@@ -1,17 +1,21 @@
 {
-  "name": "site-2.0",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^4.7.0",
-    "@astrojs/check": "^0.5.10",
-    "typescript": "^5.4.5"
-  }
+	"name": "site-2.0",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"dev:vercel": "vercel dev --listen 3001",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.5.10",
+		"astro": "^4.7.0",
+		"typescript": "^5.4.5"
+	},
+	"devDependencies": {
+		"@types/node": "^20.12.11"
+	}
 }

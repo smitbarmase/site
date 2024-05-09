@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { useAPI } from "../utils";
 
-const data = await fetch("http://localhost:3000/api/handler")
-	.then((response) => response.text())
+const data = await fetch(useAPI("/handler"))
+	.then((response) => response.json())
 	.catch((err) => {
 		throw new Error(`Couldn't build library ${err}`);
 	});
@@ -11,6 +12,6 @@ const data = await fetch("http://localhost:3000/api/handler")
 <Layout title="Welcome to Astro.">
 	<main>Hello</main>
 	<p>
-		{data}
+		{data.message}
 	</p>
 </Layout>
