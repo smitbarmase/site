@@ -1,17 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { useAPI } from "../utils";
+// import { useAPI } from "../utils";
 
-const data = await fetch(useAPI("/handler"))
-	.then((response) => response.json())
-	.catch((err) => {
-		throw new Error(`Couldn't build library ${err}`);
-	});
+// const data = await fetch(useAPI("/handler"))
+// 	.then((response) => response.json())
+// 	.catch((err) => {
+// 		throw new Error(`Couldn't build library ${err}`);
+// 	});
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>Hello</main>
 	<p>
-		{data.message}
+		<!-- {data.message} -->
 	</p>
 </Layout>
