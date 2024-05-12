@@ -1,13 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 // import { useAPI } from "../utils";
-import { Suspense } from "simple-stack-stream/components";
+// import { Suspense } from "simple-stack-stream/components";
 
 // const data = await fetch(useAPI("/handler"))
 // 	.then((response) => response.json())
 // 	.catch((err) => {
 // 		throw new Error(`Couldn't build library ${err}`);
 // 	});
+
+export const prerender = false;
+
 const promise = new Promise((resolve, reject) => {
 	setTimeout(() => {
 		resolve("Promise resolved after 5 seconds");
@@ -17,8 +20,9 @@ const promise = new Promise((resolve, reject) => {
 
 <Layout title="Welcome to Astro.">
 	<main>Hello</main>
-	<Suspense>
-		{promise}
-		<p slot="fallback">Loading...</p>
-	</Suspense>
+	<!-- <Suspense> -->
+	{promise}
+	<!-- <p slot="fallback">Loading...</p> -->
+	<!-- </Suspense> -->
+	<p>so i'm not rendered until 5 seconds</p>
 </Layout>
