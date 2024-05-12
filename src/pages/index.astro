@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Delay from "../components/Delay.astro";
 // import { useAPI } from "../utils";
 // import { Suspense } from "simple-stack-stream/components";
 
@@ -10,18 +11,12 @@ import Layout from "../layouts/Layout.astro";
 // 	});
 
 export const prerender = false;
-
-const promise = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		resolve("Promise resolved after 5 seconds");
-	}, 5000);
-});
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>Hello</main>
 	<!-- <Suspense> -->
-	{promise}
+	<Delay />
 	<!-- <p slot="fallback">Loading...</p> -->
 	<!-- </Suspense> -->
 	<p>so i'm not rendered until 5 seconds</p>
