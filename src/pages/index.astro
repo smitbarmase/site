@@ -1,7 +1,6 @@
 ---
-import { Suspense } from "simple-stack-stream/components";
+// import { Suspense } from "simple-stack-stream/components";
 
-import Layout from "../layouts/Layout.astro";
 import Delay from "../components/Delay.astro";
 // import { useAPI } from "../utils";
 
@@ -14,11 +13,17 @@ import Delay from "../components/Delay.astro";
 // export const prerender = false;
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>Hello</main>
-	<Suspense>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<main>Hello</main>
+		<!-- <Suspense> -->
 		<Delay />
-		<p slot="fallback">Loading...</p>
-	</Suspense>
-	<p>so i'm not rendered until 5 seconds</p>
-</Layout>
+		<!-- <p slot="fallback">Loading...</p> -->
+		<!-- </Suspense> -->
+		<p>so i'm not rendered until 5 seconds</p>
+	</body>
+</html>
