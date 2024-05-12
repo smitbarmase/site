@@ -1,7 +1,6 @@
 ---
-// import { Suspense } from "simple-stack-stream/components";
+import Layout from "../layouts/Layout.astro";
 
-import Delay from "../components/Delay.astro";
 // import { useAPI } from "../utils";
 
 // const data = await fetch(useAPI("/handler"))
@@ -10,20 +9,10 @@ import Delay from "../components/Delay.astro";
 // 		throw new Error(`Couldn't build library ${err}`);
 // 	});
 
-// export const prerender = false;
+export const prerender = false;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-	</head>
-	<body>
-		<main>Hello</main>
-		<!-- <Suspense> -->
-		<Delay />
-		<!-- <p slot="fallback">Loading...</p> -->
-		<!-- </Suspense> -->
-		<p>so i'm not rendered until 5 seconds</p>
-	</body>
-</html>
+<Layout title="Welcome to Astro.">
+	<main>Hello</main>
+	<p>so i'm not rendered until 5 seconds</p>
+</Layout>
