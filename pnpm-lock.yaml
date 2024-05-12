@@ -11,6 +11,9 @@ dependencies:
   astro:
     specifier: ^4.7.0
     version: 4.7.0(@types/node@20.12.11)(typescript@5.4.5)
+  simple-stack-stream:
+    specifier: ^0.3.4
+    version: 0.3.4(astro@4.7.0)
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
@@ -2581,6 +2584,12 @@ packages:
     hasBin: true
     dev: false
 
+  /nanoid@5.0.7:
+    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /nlcst-to-string@3.1.1:
     resolution: {integrity: sha512-63mVyqaqt0cmn2VcI2aH6kxe1rLAmSROqHMA0i4qqg1tidkfExgpb0FGMikMCn86mw5dFtBtEANfmSSK7TjNHw==}
     dependencies:
@@ -3053,6 +3062,15 @@ packages:
   /signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+    dev: false
+
+  /simple-stack-stream@0.3.4(astro@4.7.0):
+    resolution: {integrity: sha512-jsWGcXVLt9h4gyqJpSM4zlYW4a/sbk7OO/1uNPKcXlbgjqcXhFazSOLjggZ4AZRRekWSO0BIhlFCz8EYl5p0dQ==}
+    peerDependencies:
+      astro: ^3.6.0 || ^4.0.0
+    dependencies:
+      astro: 4.7.0(@types/node@20.12.11)(typescript@5.4.5)
+      nanoid: 5.0.7
     dev: false
 
   /simple-swizzle@0.2.2:

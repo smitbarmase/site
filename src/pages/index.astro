@@ -1,17 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { useAPI } from "../utils";
+// import { useAPI } from "../utils";
+import { Suspense } from "simple-stack-stream/components";
 
 // const data = await fetch(useAPI("/handler"))
 // 	.then((response) => response.json())
 // 	.catch((err) => {
 // 		throw new Error(`Couldn't build library ${err}`);
 // 	});
+const promise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve("Promise resolved after 5 seconds");
+	}, 5000);
+});
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>Hello</main>
-	<p id="box">
-		<!-- {data.message} -->
-	</p>
+	<Suspense>
+		{promise}
+		<p slot="fallback">Loading...</p>
+	</Suspense>
 </Layout>
