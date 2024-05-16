@@ -25,5 +25,7 @@ pnpm-debug.log*
 .idea/
 .vercel
 
-# setting for obsidian
+
+# should sync with mobile but not remote
+.stignore
 .obsidian/
