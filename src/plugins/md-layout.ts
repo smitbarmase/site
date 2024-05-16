@@ -1,11 +1,11 @@
 import type { RemarkPlugin } from '@astrojs/markdown-remark';
 import picomatch from 'picomatch';
 
-const mdxLayout: RemarkPlugin = () => {
+const mdLayout: RemarkPlugin = () => {
 	return function (_tree, file) {
 		const [filePath] = file.history;
 		const path = filePath.replace(/.*src\//, '');
-		const glob = 'pages/**/*.mdx';
+		const glob = 'pages/**/*.md';
 		const layoutPath = '/src/layouts/Layout.astro';
 		if (picomatch.isMatch(path, glob)) {
 			const metadata = file.data.astro as {
@@ -16,4 +16,4 @@ const mdxLayout: RemarkPlugin = () => {
 	};
 };
 
-export default mdxLayout;
+export default mdLayout;

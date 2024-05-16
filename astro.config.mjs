@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 
-import mdx from '@astrojs/mdx';
-import mdxLayoutPlugin from './src/plugins/mdx-layout.ts';
+import mdLayoutPlugin from './src/plugins/md-layout.ts';
 
 export default defineConfig({
-	integrations: [mdx({ remarkPlugins: [mdxLayoutPlugin] })]
+	integrations: [],
+	markdown: {
+		rehypePlugins: [mdLayoutPlugin]
+	}
 });
