@@ -1,10 +1,8 @@
-import { defineConfig } from "astro/config";
+import { defineConfig } from 'astro/config';
 
-import vercel from "@astrojs/vercel/serverless";
+import mdx from '@astrojs/mdx';
+import mdxLayoutPlugin from './src/plugins/mdx-layout.ts';
 
-// https://astro.build/config
 export default defineConfig({
-	integrations: [],
-	output: "hybrid",
-	adapter: vercel(),
+	integrations: [mdx({ remarkPlugins: [mdxLayoutPlugin] })]
 });

@@ -5,18 +5,20 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"dev:vercel": "vercel dev --listen 3001",
 		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.5.10",
-		"@astrojs/vercel": "^7.6.0",
-		"astro": "^4.7.0",
+		"@astrojs/markdown-remark": "^5.1.0",
+		"@astrojs/mdx": "^3.0.0",
+		"astro": "^4.8.5",
+		"picomatch": "^4.0.2",
 		"typescript": "^5.4.5"
 	},
 	"devDependencies": {
-		"@types/node": "^20.12.11"
+		"@types/node": "^20.12.12",
+		"@types/picomatch": "^2.3.3"
 	}
 }
