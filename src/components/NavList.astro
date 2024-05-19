@@ -18,8 +18,10 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 		Object.entries(tree).map(([title, node]) => {
 			const { slug, children, level } = node;
 			const isCollapsible = Object.keys(children).length > 0;
+			const id = `list-item-${slug.replace(/\//g, "-")}`;
 			return (
 				<li
+					id={id}
 					data-collapsed="false"
 					class="group group-data-[collapsed=true]:hidden"
 				>
@@ -52,14 +54,21 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 	}
 </ul>
 <script is:inline data-astro-rerun>
-	document.querySelectorAll("[data-collapsible]").forEach((ele) => {
-		ele.onclick = (e) => {
-			if (ele.dataset.selected !== "true") return;
-			const listItem = ele.closest("li");
+	document.querySelectorAll("[data-collapsed]").forEach((listItem) => {
+		const value = localStorage.getItem(listItem.id);
+		if (value === "true") {
+			listItem.setAttribute("data-collapsed", "true");
+		}
+	});
+	document.querySelectorAll("[data-collapsible]").forEach((link) => {
+		link.onclick = (e) => {
+			if (link.dataset.selected !== "true") return;
+			const listItem = link.closest("li");
 			if (!listItem) return;
 			e.preventDefault();
 			const value = listItem.getAttribute("data-collapsed") === "true";
 			listItem.setAttribute("data-collapsed", String(!value));
+			localStorage.setItem(listItem.id, String(!value));
 		};
 	});
 </script>
