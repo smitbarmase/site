@@ -36,7 +36,6 @@ const { tree } = Astro.props;
 						data-list-item-id={listItemId}
 						data-collapsible={String(hasChildren)}
 						data-selected={String(selected)}
-						hx-boost={selected ? "false" : "true"}
 					>
 						{Array.from({ length: level }).map(() => (
 							<span
@@ -65,24 +64,16 @@ const { tree } = Astro.props;
 		})
 	}
 </ul>
-<script>
-	const loadClickHandlers = () => {
-		document.querySelectorAll("[data-collapsible]").forEach((el) => {
-			const ele = el as HTMLAnchorElement;
-			ele.onclick = (e) => {
-				if (ele.dataset.selected !== "true") return;
-				if (!ele.dataset.listItemId) return;
-				const listItem = document.getElementById(ele.dataset.listItemId);
-				if (!listItem) return;
-
-				e.preventDefault();
-				const value = listItem.getAttribute("data-collapsed") === "true";
-				listItem.setAttribute("data-collapsed", String(!value));
-			};
-		});
-	};
-	document.body.addEventListener("htmx:afterSwap", (e) => {
-		loadClickHandlers();
+<script data-astro-rerun>
+	document.querySelectorAll("[data-collapsible]").forEach((ele) => {
+		ele.onclick = (e) => {
+			if (ele.dataset.selected !== "true") return;
+			if (!ele.dataset.listItemId) return;
+			const listItem = document.getElementById(ele.dataset.listItemId);
+			if (!listItem) return;
+			e.preventDefault();
+			const value = listItem.getAttribute("data-collapsed") === "true";
+			listItem.setAttribute("data-collapsed", String(!value));
+		};
 	});
-	loadClickHandlers();
 </script>
