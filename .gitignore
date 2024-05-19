@@ -29,4 +29,5 @@ pnpm-debug.log*
 # should sync with mobile but not remote
 .stfolder*
 .stignore
+.syncthing.*
 .obsidian/

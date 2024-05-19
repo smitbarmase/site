@@ -1,0 +1,50 @@
+---
+import { ChevronDown } from "lucide-astro";
+import clsx from "clsx";
+
+import type { TreeNode } from "../types";
+
+interface Props {
+	tree: Record<string, TreeNode>;
+}
+
+const { tree } = Astro.props;
+---
+
+<ul>
+	{
+		Object.entries(tree).map(([title, { slug, level, children }]) => {
+			const selected = `/${slug}` === Astro.url.pathname;
+			const hasChildren = Object.keys(children).length > 0;
+			return (
+				<li>
+					<a
+						href={`/${slug}`}
+						class={clsx(
+							"flex items-center text-sm",
+							selected ? "bg-blue" : "hover:bg-gray-100"
+						)}
+					>
+						{Array.from({ length: level }).map(() => (
+							<span
+								class={clsx(
+									"ml-2.5 border-l self-stretch",
+									selected ? "border-gray-300" : "border-gray-200"
+								)}
+							/>
+						))}
+						{hasChildren ? (
+							<span class="ml-0.5 flex items-end">
+								<ChevronDown size="17px" stroke-width="1.3px" />
+								<span class="ml-0.5">{title}</span>
+							</span>
+						) : (
+							<span class="ml-2.5">{title}</span>
+						)}
+					</a>
+					{hasChildren && <Astro.self tree={children} />}
+				</li>
+			);
+		})
+	}
+</ul>

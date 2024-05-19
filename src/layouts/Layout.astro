@@ -1,13 +1,25 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import NavList from "../components/NavList.astro";
+
+import { createTree } from "../utils/nav";
+
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
+const blogEntries: CollectionEntry<"root">[] = await getCollection("root");
+
+const tree = createTree(blogEntries);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -15,9 +27,15 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body>
-		<p>I wrap everything!</p>
-		<slot />
+	<body class="flex h-screen">
+		<nav
+			class="min-w-48 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
+			role="navigation"
+		>
+			<NavList tree={tree} />
+		</nav>
+		<slot class="flex-1" />
 	</body>
 </html>

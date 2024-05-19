@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import "../index.css";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection("root");
+	return blogEntries.map((entry) => ({
+		params: { slug: entry.slug === "index" ? undefined : entry.slug },
+		props: { entry },
+	}));
+}
+
+interface Props {
+	entry: CollectionEntry<"root">;
+}
+
+const { entry } = Astro.props;
+
+const slug = entry.slug.split("/").pop() ?? "";
+const title = `${slug === "index" ? "" : `${slug} - `}smit barmase's website`;
+
+const { Content } = await entry.render();
+---
+
+<Layout title={title}>
+	<Content />
+</Layout>

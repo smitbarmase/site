@@ -1,10 +1,7 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
-import mdLayoutPlugin from './src/plugins/md-layout.ts';
-
+// https://astro.build/config
 export default defineConfig({
-	integrations: [],
-	markdown: {
-		rehypePlugins: [mdLayoutPlugin]
-	}
+	integrations: [tailwind({ applyBaseStyles: false })]
 });
