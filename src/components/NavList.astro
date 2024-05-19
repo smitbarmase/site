@@ -18,6 +18,7 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 		Object.entries(tree).map(([title, node]) => {
 			const { slug, children, level } = node;
 			const isCollapsible = Object.keys(children).length > 0;
+			const isSelected = `/${slug}` === formattedPathname;
 			const id = `list-item-${slug.replace(/\//g, "-")}`;
 			return (
 				<li
@@ -29,7 +30,8 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 						href={`/${slug}`}
 						class="group flex items-center text-sm data-[selected=true]:bg-blue data-[selected=false]:hover:bg-gray-100"
 						data-collapsible={String(isCollapsible)}
-						data-selected={String(`/${slug}` === formattedPathname)}
+						data-selected={String(isSelected)}
+						hx-boost={isSelected ? "false" : "true"}
 					>
 						{Array.from({ length: level }).map(() => (
 							<span class="ml-2.5 border-l self-stretch group-data-[selected=true]:border-gray-300 group-data-[selected=false]:border-gray-200" />
@@ -53,7 +55,7 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 		})
 	}
 </ul>
-<script is:inline data-astro-rerun>
+<script is:inline>
 	document.querySelectorAll("[data-collapsed]").forEach((listItem) => {
 		const value = localStorage.getItem(listItem.id);
 		if (value === "true") {
