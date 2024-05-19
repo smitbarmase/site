@@ -9,13 +9,16 @@ interface Props {
 }
 
 const { tree } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 ---
 
 <ul>
 	{
 		Object.entries(tree).map(([title, node]) => {
 			const { slug, children, level } = node;
-			const selected = `/${slug}` === Astro.url.pathname.replace(/\/$/, "");
+			const selected = `/${slug}` === formattedPathname;
 			const hasChildren = Object.keys(children).length > 0;
 
 			const listItemId = `nav-list-item-${slug ? slug.replace(/\//g, "-") : "root"}`;
