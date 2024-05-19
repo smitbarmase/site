@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
@@ -19,7 +18,7 @@ const tree = createTree(blogEntries);
 ---
 
 <!doctype html>
-<html lang="en" transition:animate="none">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -27,7 +26,6 @@ const tree = createTree(blogEntries);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
 	</head>
 	<body class="flex h-screen">
 		<nav
@@ -36,6 +34,8 @@ const tree = createTree(blogEntries);
 		>
 			<NavList tree={tree} />
 		</nav>
-		<slot class="flex-1" />
+		<div id="content" class="flex-1">
+			<slot />
+		</div>
 	</body>
 </html>

@@ -13,17 +13,30 @@ const { tree } = Astro.props;
 
 <ul>
 	{
-		Object.entries(tree).map(([title, { slug, level, children }]) => {
+		Object.entries(tree).map(([title, node]) => {
+			const { slug, children, level } = node;
 			const selected = `/${slug}` === Astro.url.pathname;
 			const hasChildren = Object.keys(children).length > 0;
+
+			const listItemId = `nav-list-item-${slug ? slug.replace(/\//g, "-") : "root"}`;
+
 			return (
-				<li>
+				<li
+					id={listItemId}
+					data-collapsed="false"
+					class="group group-data-[collapsed=true]:hidden"
+				>
 					<a
 						href={`/${slug}`}
 						class={clsx(
+							"nav-link",
 							"flex items-center text-sm",
 							selected ? "bg-blue" : "hover:bg-gray-100"
 						)}
+						data-list-item-id={listItemId}
+						data-collapsible={String(hasChildren)}
+						data-selected={String(selected)}
+						hx-boost={selected ? "false" : "true"}
 					>
 						{Array.from({ length: level }).map(() => (
 							<span
@@ -35,7 +48,11 @@ const { tree } = Astro.props;
 						))}
 						{hasChildren ? (
 							<span class="ml-0.5 flex items-end">
-								<ChevronDown size="17px" stroke-width="1.3px" />
+								<ChevronDown
+									size="17px"
+									stroke-width="1.3px"
+									class="group-data-[collapsed=true]:-rotate-90"
+								/>
 								<span class="ml-0.5">{title}</span>
 							</span>
 						) : (
@@ -48,3 +65,24 @@ const { tree } = Astro.props;
 		})
 	}
 </ul>
+<script>
+	const loadClickHandlers = () => {
+		document.querySelectorAll("[data-collapsible]").forEach((el) => {
+			const ele = el as HTMLAnchorElement;
+			ele.onclick = (e) => {
+				if (ele.dataset.selected !== "true") return;
+				if (!ele.dataset.listItemId) return;
+				const listItem = document.getElementById(ele.dataset.listItemId);
+				if (!listItem) return;
+
+				e.preventDefault();
+				const value = listItem.getAttribute("data-collapsed") === "true";
+				listItem.setAttribute("data-collapsed", String(!value));
+			};
+		});
+	};
+	document.body.addEventListener("htmx:afterSwap", (e) => {
+		loadClickHandlers();
+	});
+	loadClickHandlers();
+</script>

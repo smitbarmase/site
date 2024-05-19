@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 import "../index.css";
+
 import Layout from "../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -28,3 +29,6 @@ const { Content } = await entry.render();
 <Layout title={title}>
 	<Content />
 </Layout>
+<script>
+	import "htmx.org";
+</script>
