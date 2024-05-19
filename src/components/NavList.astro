@@ -1,6 +1,5 @@
 ---
 import { ChevronDown } from "lucide-astro";
-import clsx from "clsx";
 
 import type { TreeNode } from "../types";
 
@@ -18,37 +17,22 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 	{
 		Object.entries(tree).map(([title, node]) => {
 			const { slug, children, level } = node;
-			const selected = `/${slug}` === formattedPathname;
-			const hasChildren = Object.keys(children).length > 0;
-
-			const listItemId = `nav-list-item-${slug ? slug.replace(/\//g, "-") : "root"}`;
-
+			const isCollapsible = Object.keys(children).length > 0;
 			return (
 				<li
-					id={listItemId}
 					data-collapsed="false"
 					class="group group-data-[collapsed=true]:hidden"
 				>
 					<a
 						href={`/${slug}`}
-						class={clsx(
-							"nav-link",
-							"flex items-center text-sm",
-							selected ? "bg-blue" : "hover:bg-gray-100"
-						)}
-						data-list-item-id={listItemId}
-						data-collapsible={String(hasChildren)}
-						data-selected={String(selected)}
+						class="group flex items-center text-sm data-[selected=true]:bg-blue data-[selected=false]:hover:bg-gray-100"
+						data-collapsible={String(isCollapsible)}
+						data-selected={String(`/${slug}` === formattedPathname)}
 					>
 						{Array.from({ length: level }).map(() => (
-							<span
-								class={clsx(
-									"ml-2.5 border-l self-stretch",
-									selected ? "border-gray-300" : "border-gray-200"
-								)}
-							/>
+							<span class="ml-2.5 border-l self-stretch group-data-[selected=true]:border-gray-300 group-data-[selected=false]:border-gray-200" />
 						))}
-						{hasChildren ? (
+						{isCollapsible ? (
 							<span class="ml-0.5 flex items-end">
 								<ChevronDown
 									size="17px"
@@ -61,7 +45,7 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 							<span class="ml-2.5">{title}</span>
 						)}
 					</a>
-					{hasChildren && <Astro.self tree={children} />}
+					{isCollapsible && <Astro.self tree={children} />}
 				</li>
 			);
 		})
@@ -71,8 +55,7 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 	document.querySelectorAll("[data-collapsible]").forEach((ele) => {
 		ele.onclick = (e) => {
 			if (ele.dataset.selected !== "true") return;
-			if (!ele.dataset.listItemId) return;
-			const listItem = document.getElementById(ele.dataset.listItemId);
+			const listItem = ele.closest("li");
 			if (!listItem) return;
 			e.preventDefault();
 			const value = listItem.getAttribute("data-collapsed") === "true";
