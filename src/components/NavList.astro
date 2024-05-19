@@ -15,7 +15,7 @@ const { tree } = Astro.props;
 	{
 		Object.entries(tree).map(([title, node]) => {
 			const { slug, children, level } = node;
-			const selected = `/${slug}` === Astro.url.pathname;
+			const selected = `/${slug}` === Astro.url.pathname.replace(/\/$/, "");
 			const hasChildren = Object.keys(children).length > 0;
 
 			const listItemId = `nav-list-item-${slug ? slug.replace(/\//g, "-") : "root"}`;
@@ -64,7 +64,7 @@ const { tree } = Astro.props;
 		})
 	}
 </ul>
-<script data-astro-rerun>
+<script is:inline data-astro-rerun>
 	document.querySelectorAll("[data-collapsible]").forEach((ele) => {
 		ele.onclick = (e) => {
 			if (ele.dataset.selected !== "true") return;
