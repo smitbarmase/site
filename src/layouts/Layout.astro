@@ -5,7 +5,6 @@ import type { CollectionEntry } from "astro:content";
 import NavList from "../components/NavList.astro";
 
 import { createTree } from "../utils/nav";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
@@ -32,6 +31,7 @@ const tree = createTree(blogEntries);
 		<nav
 			class="min-w-48 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
 			role="navigation"
+			hx-preserve="true"
 		>
 			<NavList tree={tree} />
 		</nav>
@@ -40,3 +40,35 @@ const tree = createTree(blogEntries);
 		</div>
 	</body>
 </html>
+<script is:inline>
+	document.querySelectorAll("[data-collapsed]").forEach((listItem) => {
+		const value = localStorage.getItem(listItem.id);
+		if (value === "true") {
+			listItem.setAttribute("data-collapsed", "true");
+		}
+	});
+	const collapsibleElements = document.querySelectorAll("[data-collapsible]");
+	let selectedElement = document.querySelector("[data-selected=true]");
+
+	collapsibleElements.forEach((link) => {
+		link.onclick = (e) => {
+			if (selectedElement) {
+				if (
+					selectedElement.dataset.collapsible === "true" &&
+					selectedElement === link
+				) {
+					const listItem = selectedElement.closest("li");
+					if (listItem) {
+						const value = listItem.getAttribute("data-collapsed") === "true";
+						listItem.setAttribute("data-collapsed", String(!value));
+						localStorage.setItem(listItem.id, String(!value));
+					}
+					return;
+				}
+				selectedElement.dataset.selected = "false";
+			}
+			link.dataset.selected = "true";
+			selectedElement = link;
+		};
+	});
+</script>

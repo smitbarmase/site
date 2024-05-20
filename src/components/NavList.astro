@@ -31,7 +31,9 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 						class="group flex items-center text-sm data-[selected=true]:bg-blue data-[selected=false]:hover:bg-gray-100"
 						data-collapsible={String(isCollapsible)}
 						data-selected={String(isSelected)}
-						hx-boost={isSelected ? "false" : "true"}
+						hx-boost="true"
+						hx-target="#content"
+						hx-select="#content"
 					>
 						{Array.from({ length: level }).map(() => (
 							<span class="ml-2.5 border-l self-stretch group-data-[selected=true]:border-gray-300 group-data-[selected=false]:border-gray-200" />
@@ -55,22 +57,3 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 		})
 	}
 </ul>
-<script is:inline>
-	document.querySelectorAll("[data-collapsed]").forEach((listItem) => {
-		const value = localStorage.getItem(listItem.id);
-		if (value === "true") {
-			listItem.setAttribute("data-collapsed", "true");
-		}
-	});
-	document.querySelectorAll("[data-collapsible]").forEach((link) => {
-		link.onclick = (e) => {
-			if (link.dataset.selected !== "true") return;
-			const listItem = link.closest("li");
-			if (!listItem) return;
-			e.preventDefault();
-			const value = listItem.getAttribute("data-collapsed") === "true";
-			listItem.setAttribute("data-collapsed", String(!value));
-			localStorage.setItem(listItem.id, String(!value));
-		};
-	});
-</script>
