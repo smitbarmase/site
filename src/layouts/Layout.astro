@@ -34,21 +34,23 @@ const tree = createTree(blogEntries);
 		>
 			<NavList tree={tree} />
 		</nav>
-		<div id="content" class="flex-1">
+		<div id="content" class="flex-1 py-3 px-4">
 			<slot />
 		</div>
 	</body>
 </html>
 <script is:inline>
 	history.replaceState(
-		{ head: document.head.innerHTML, body: document.body.innerHTML },
+		{ title: document.head.title, body: document.body.innerHTML },
 		null,
 		window.location.pathname
 	);
 
 	window.onpopstate = (e) => {
-		document.head.innerHTML = e.state.head;
-		document.body.innerHTML = e.state.body;
+		if (e.state) {
+			document.head.title = e.state.title;
+			document.body.innerHTML = e.state.body;
+		}
 	};
 
 	const loadContent = async (url) => {
@@ -60,12 +62,11 @@ const tree = createTree(blogEntries);
 			const html = await response.text();
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(html, "text/html");
-
-			document.getElementById("content").innerHTML =
-				doc.querySelector("#content").innerHTML;
-			document.head.innerHTML = doc.head.innerHTML;
+			const newContent = doc.querySelector("#content").innerHTML;
+			document.getElementById("content").innerHTML = newContent;
+			document.head.title = doc.head.title;
 			history.pushState(
-				{ head: doc.head.innerHTML, body: doc.body.innerHTML },
+				{ title: doc.head.title, body: doc.body.innerHTML },
 				null,
 				url
 			);
