@@ -21,7 +21,7 @@ interface Props {
 const { entry } = Astro.props;
 
 const slug = entry.slug.split("/").pop() ?? "";
-const title = `${slug === "index" ? "" : `${slug} - `}smit barmase's website`;
+const title = `${slug === "index" ? "" : `${slug.split("-").join(" ")} - `}smit barmase's website`;
 
 const { Content } = await entry.render();
 ---

@@ -29,7 +29,7 @@ const tree = createTree(blogEntries);
 	</head>
 	<body class="flex h-screen">
 		<nav
-			class="min-w-48 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
+			class="min-w-60 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
 			role="navigation"
 		>
 			<NavList tree={tree} />
@@ -40,10 +40,15 @@ const tree = createTree(blogEntries);
 	</body>
 </html>
 <script is:inline>
-	console.log("custom router running...");
+	history.replaceState(
+		{ head: document.head.innerHTML, body: document.body.innerHTML },
+		null,
+		window.location.pathname
+	);
 
 	window.onpopstate = (e) => {
-		console.log("popstate event triggered", e.state);
+		document.head.innerHTML = e.state.head;
+		document.body.innerHTML = e.state.body;
 	};
 
 	const loadContent = async (url) => {
@@ -59,7 +64,11 @@ const tree = createTree(blogEntries);
 			document.getElementById("content").innerHTML =
 				doc.querySelector("#content").innerHTML;
 			document.head.innerHTML = doc.head.innerHTML;
-			history.pushState("something", null, url);
+			history.pushState(
+				{ head: doc.head.innerHTML, body: doc.body.innerHTML },
+				null,
+				url
+			);
 		} catch (error) {
 			console.error("Error fetching the content:", error);
 		}
@@ -69,8 +78,6 @@ const tree = createTree(blogEntries);
 	document.querySelectorAll("[data-collapsible]").forEach((link) => {
 		link.onclick = (e) => {
 			e.preventDefault();
-			loadContent(link.getAttribute("href"));
-
 			if (selectedElement) {
 				if (
 					selectedElement.dataset.collapsible === "true" &&
@@ -87,6 +94,7 @@ const tree = createTree(blogEntries);
 			}
 			link.dataset.selected = "true";
 			selectedElement = link;
+			loadContent(link.getAttribute("href"));
 		};
 	});
 </script>
