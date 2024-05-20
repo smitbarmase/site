@@ -1,1 +1,1 @@
-index
+welcome to my blog

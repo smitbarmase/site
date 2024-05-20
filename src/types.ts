@@ -1,5 +1,5 @@
 export interface TreeNode {
 	children: Record<string, TreeNode>;
-	slug: string;
+	path: string;
 	level: number;
 }

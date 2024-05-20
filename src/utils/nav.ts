@@ -1,3 +1,5 @@
+import { dset } from "dset/merge";
+
 import type { CollectionEntry } from "astro:content";
 
 import type { TreeNode } from "../types";
@@ -8,29 +10,32 @@ export function createTree(
 	const tree: Record<string, TreeNode> = {
 		root: {
 			children: {},
-			slug: "",
+			path: "/",
 			level: 0,
 		},
 	};
 	for (const entry of entries) {
-		const parts = entry.id.split("/");
-		let currentNode = tree.root.children;
-		let currentLevel = 1;
-		for (const part of parts) {
-			if (part === "index.md") {
-				continue;
-			}
-			const title = part.replace(/\.md$/, "").split("-").join(" ");
-			if (!(title in currentNode)) {
-				currentNode[title] = {
-					children: {},
-					slug: entry.slug,
-					level: currentLevel,
-				};
-			}
-			currentNode = currentNode[title].children;
-			currentLevel++;
+		const parts = entry.id.replace(/\.md$/, "").split("/");
+		if (parts[parts.length - 1] === "index") {
+			parts.pop();
 		}
+		if (!parts.length) {
+			continue;
+		}
+		const node = {
+			children: {},
+			path: `/${parts.join("/")}`,
+			level: parts.length,
+		};
+		const updatePath = `root.children.${parts
+			.map(
+				(part, index) =>
+					`${part.split("-").join(" ")}${
+						index !== parts.length - 1 ? ".children" : ""
+					}`
+			)
+			.join(".")}`;
+		dset(tree, updatePath, node);
 	}
 	return tree;
 }

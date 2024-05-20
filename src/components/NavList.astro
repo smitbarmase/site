@@ -16,10 +16,10 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 <ul>
 	{
 		Object.entries(tree).map(([title, node]) => {
-			const { slug, children, level } = node;
+			const { path, children, level } = node;
 			const isCollapsible = Object.keys(children).length > 0;
-			const isSelected = `/${slug}` === formattedPathname;
-			const id = `list-item-${slug.replace(/\//g, "-")}`;
+			const isSelected = path === formattedPathname;
+			const id = `list-item-${path.replace(/\//g, "-")}`;
 			return (
 				<li
 					id={id}
@@ -27,13 +27,10 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 					class="group group-data-[collapsed=true]:hidden"
 				>
 					<a
-						href={`/${slug}`}
+						href={path}
 						class="group flex items-center text-sm data-[selected=true]:bg-blue data-[selected=false]:hover:bg-gray-100"
 						data-collapsible={String(isCollapsible)}
 						data-selected={String(isSelected)}
-						hx-boost="true"
-						hx-target="#content"
-						hx-select="#content"
 					>
 						{Array.from({ length: level }).map(() => (
 							<span class="ml-2.5 border-l self-stretch group-data-[selected=true]:border-gray-300 group-data-[selected=false]:border-gray-200" />

@@ -31,7 +31,6 @@ const tree = createTree(blogEntries);
 		<nav
 			class="min-w-48 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
 			role="navigation"
-			hx-preserve="true"
 		>
 			<NavList tree={tree} />
 		</nav>
@@ -41,17 +40,37 @@ const tree = createTree(blogEntries);
 	</body>
 </html>
 <script is:inline>
-	document.querySelectorAll("[data-collapsed]").forEach((listItem) => {
-		const value = localStorage.getItem(listItem.id);
-		if (value === "true") {
-			listItem.setAttribute("data-collapsed", "true");
-		}
-	});
-	const collapsibleElements = document.querySelectorAll("[data-collapsible]");
-	let selectedElement = document.querySelector("[data-selected=true]");
+	console.log("custom router running...");
 
-	collapsibleElements.forEach((link) => {
+	window.onpopstate = (e) => {
+		console.log("popstate event triggered", e.state);
+	};
+
+	const loadContent = async (url) => {
+		try {
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			const html = await response.text();
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(html, "text/html");
+
+			document.getElementById("content").innerHTML =
+				doc.querySelector("#content").innerHTML;
+			document.head.innerHTML = doc.head.innerHTML;
+			history.pushState("something", null, url);
+		} catch (error) {
+			console.error("Error fetching the content:", error);
+		}
+	};
+
+	let selectedElement = document.querySelector("[data-selected=true]");
+	document.querySelectorAll("[data-collapsible]").forEach((link) => {
 		link.onclick = (e) => {
+			e.preventDefault();
+			loadContent(link.getAttribute("href"));
+
 			if (selectedElement) {
 				if (
 					selectedElement.dataset.collapsible === "true" &&
@@ -61,7 +80,6 @@ const tree = createTree(blogEntries);
 					if (listItem) {
 						const value = listItem.getAttribute("data-collapsed") === "true";
 						listItem.setAttribute("data-collapsed", String(!value));
-						localStorage.setItem(listItem.id, String(!value));
 					}
 					return;
 				}
