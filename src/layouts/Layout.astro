@@ -29,7 +29,7 @@ const tree = createTree(blogEntries);
 	</head>
 	<body class="flex h-screen">
 		<nav
-			class="min-w-60 max-w-80 border-r border-gray-200 resize-x overflow-hidden bg-gray-50"
+			class="min-w-60 max-w-80 border-r border-r-gray bg-light-gray resize-x overflow-hidden"
 			role="navigation"
 		>
 			<NavList tree={tree} />
@@ -41,23 +41,21 @@ const tree = createTree(blogEntries);
 </html>
 <script is:inline>
 	history.replaceState(
-		{ title: document.head.title, body: document.body.innerHTML },
+		{ head: document.head.innerHTML, body: document.body.innerHTML },
 		null,
 		window.location.pathname
 	);
 
 	window.onpopstate = (e) => {
 		if (e.state) {
-			document.head.title = e.state.title;
+			document.head.innerHTML = e.state.head;
 			document.body.innerHTML = e.state.body;
 		}
 	};
 
 	const loadContent = async (url) => {
 		try {
-			const headers = new Headers();
-			headers.append("cache-control", "max-age=3600, public");
-			const response = await fetch(url, { headers });
+			const response = await fetch(url);
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
@@ -66,9 +64,9 @@ const tree = createTree(blogEntries);
 			const doc = parser.parseFromString(html, "text/html");
 			const newContent = doc.querySelector("#content").innerHTML;
 			document.getElementById("content").innerHTML = newContent;
-			document.head.title = doc.head.title;
+			document.head.innerHTML = doc.head.innerHTML;
 			history.pushState(
-				{ title: doc.head.title, body: doc.body.innerHTML },
+				{ head: doc.head.innerHTML, body: doc.body.innerHTML },
 				null,
 				url
 			);

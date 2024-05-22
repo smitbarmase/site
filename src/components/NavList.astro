@@ -28,24 +28,24 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 				>
 					<a
 						href={path}
-						class="group flex items-center text-sm data-[selected=true]:bg-blue data-[selected=false]:hover:bg-gray-100"
+						class="group text-sm flex items-center decoration-blue data-[selected=true]:bg-gray data-[selected=true]:underline hover:underline"
 						data-collapsible={String(isCollapsible)}
 						data-selected={String(isSelected)}
 					>
 						{Array.from({ length: level }).map(() => (
-							<span class="ml-2.5 border-l self-stretch group-data-[selected=true]:border-gray-300 group-data-[selected=false]:border-gray-200" />
+							<span class="ml-3 self-stretch border-l" />
 						))}
 						{isCollapsible ? (
-							<span class="ml-0.5 flex items-end">
+							<span class="ml-1 flex items-end">
 								<ChevronDown
 									size="17px"
-									stroke-width="1.3px"
+									stroke-width="1.5px"
 									class="group-data-[collapsed=true]:-rotate-90"
 								/>
-								<span class="ml-0.5">{title}</span>
+								<span class="ml-1 text-blue">{title}</span>
 							</span>
 						) : (
-							<span class="ml-2.5">{title}</span>
+							<span class="ml-3 text-blue">{title}</span>
 						)}
 					</a>
 					{isCollapsible && <Astro.self tree={children} />}
