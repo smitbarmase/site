@@ -25,17 +25,30 @@ const tree = createTree(blogEntries);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="preload"
+			href="/fonts/inter-display.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/inter-display-medium.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 		<title>{title}</title>
 	</head>
-	<body class="flex h-screen">
-		<nav
-			class="min-w-60 max-w-80 border-r border-r-gray bg-light-gray resize-x overflow-hidden"
-			role="navigation"
-		>
+	<body class="flex h-screen overflow-clip">
+		<nav class="relative w-52 bg-blue" role="navigation">
 			<NavList tree={tree} />
 		</nav>
-		<div id="content" class="flex-1 py-3 px-4">
-			<slot />
+		<div id="content" class="flex-1 py-6 px-8 overflow-y-auto">
+			<div class="max-w-lg">
+				<slot />
+			</div>
 		</div>
 	</body>
 </html>

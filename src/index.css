@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	/* Font */
+	@font-face {
+		font-family: "InterDisplay";
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url("/fonts/inter-display.woff2") format("woff2");
+	}
+	@font-face {
+		font-family: "InterDisplay";
+		font-style: normal;
+		font-weight: 500;
+		font-display: swap;
+		src: url("/fonts/inter-display-medium.woff2") format("woff2");
+	}
+	/* Nav */
+	:root {
+		--factor: 1.28;
+	}
+	@keyframes slide {
+		0% {
+			transform: translateY(calc(17px * var(--factor) * -1));
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+	nav::after {
+		content: "";
+		background-repeat: repeat-y;
+		height: calc(100vh + (17px * var(--factor)));
+		width: calc(6px * var(--factor));
+		background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 6 17" xmlns="http://www.w3.org/2000/svg"><path d="M0.997728 -1.74331e-07C0.997728 4.24746 4.98864 4.24745 4.98864 8.49491C4.98864 12.7424 0.997728 12.7436 0.997728 16.9911L6.87309e-07 16.9911C7.94725e-07 14.5353 1.11246 13.2877 2.26583 12.0604C3.10792 11.165 3.99091 10.2879 3.99091 8.49616C3.99091 6.70345 3.10792 5.82677 2.26583 4.93042C1.11246 3.70205 1.3231e-06 2.45575 1.43051e-06 -2.17914e-07L0.997728 -1.74331e-07Z" fill="%230000FF"/><path d="M6 0L0.998581 0.00660914V0.123406C1.07507 4.24952 4.98722 4.29064 4.98722 8.49821C4.98722 12.7058 1.07509 12.7481 0.998581 16.8742V17.0066H6V0Z" fill="white"/></svg>');
+		position: absolute;
+		top: 0px;
+		right: -1px;
+		animation: slide 4s infinite linear reverse;
+	}
+	/* Main */
+	#content p {
+		@apply mb-4;
+	}
+	#content ul {
+		@apply list-disc list-inside;
+	}
+	#content strong {
+		@apply font-medium;
+	}
+}

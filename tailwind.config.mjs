@@ -3,9 +3,14 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		colors: {
-			"light-gray": "#fdfdfd",
-			gray: "#f2f2f2",
+			white: "#ffffff",
+			"light-blue": "#2d2dff",
 			blue: "#0000FF",
+		},
+		extend: {
+			fontFamily: {
+				sans: ["InterDisplay", "sans-serif"],
+			},
 		},
 	},
 	plugins: [],
