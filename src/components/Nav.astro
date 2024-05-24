@@ -11,6 +11,9 @@ const blogEntries: CollectionEntry<"root">[] = await getCollection("root");
 const tree = createTree(blogEntries);
 ---
 
-<nav class="relative w-52 bg-blue text-white font-mono" role="navigation">
+<nav
+	class="relative h-screen w-52 bg-blue text-white font-mono"
+	role="navigation"
+>
 	<NavList tree={tree} />
 </nav>
