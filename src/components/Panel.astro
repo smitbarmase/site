@@ -1,0 +1,24 @@
+---
+import { PanelLeftClose, PanelLeftOpen } from "lucide-astro";
+
+import Nav from "./Nav.astro";
+---
+
+<div data-panel="closed" class="group">
+	<div
+		class="absolute sm:relative inset-0 sm:inset-auto flex transition-all group-data-[panel=closed]:-translate-x-full sm:group-data-[panel=closed]:translate-x-0"
+	>
+		<Nav />
+		<div class="block sm:hidden flex-1 bg-gradient-to-r from-white to-white/70">
+		</div>
+	</div>
+	<div class="sm:hidden absolute left-4 bottom-4 text-white z-10">
+		<button
+			id="panel-switcher"
+			class="w-11 h-11 flex justify-center items-center rounded-xl bg-blue hover:bg-light-blue"
+		>
+			<PanelLeftClose class="size-6 group-data-[panel=closed]:hidden" />
+			<PanelLeftOpen class="size-6 group-data-[panel=open]:hidden" />
+		</button>
+	</div>
+</div>

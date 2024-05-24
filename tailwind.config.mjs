@@ -2,16 +2,17 @@
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
+		fontFamily: {
+			sans: ["InterDisplay", "sans-serif"],
+			mono: ["IBM Plex Mono", "monospace"],
+		},
 		colors: {
 			white: "#ffffff",
-			"light-blue": "#2d2dff",
 			blue: "#0000FF",
-		},
-		extend: {
-			fontFamily: {
-				sans: ["InterDisplay", "sans-serif"],
-			},
+			"light-blue": "#3333FF",
+			"lighter-blue": "#5454fb",
+			black: "#000000",
 		},
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-animate")],
 };

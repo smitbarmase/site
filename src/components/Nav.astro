@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import NavList from "./NavList.astro";
+
+import { createTree } from "../utils/nav";
+
+const blogEntries: CollectionEntry<"root">[] = await getCollection("root");
+
+const tree = createTree(blogEntries);
+---
+
+<nav class="relative w-52 bg-blue text-white font-mono" role="navigation">
+	<NavList tree={tree} />
+</nav>
