@@ -18,21 +18,14 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/inter-display.woff2"
+			href="/fonts/NimbusRoman.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/inter-display-medium.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>
-		<link
-			rel="preload"
-			href="/fonts/plex.woff2"
+			href="/fonts/NimbusMono.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -43,11 +36,9 @@ const { title } = Astro.props;
 		<Panel />
 		<div
 			id="content"
-			class="flex-1 py-6 px-4 sm:px-8 overflow-y-auto font-sans"
+			class="flex-1 p-4 sm:px-8 sm:py-6 overflow-y-auto font-serif text-lg"
 		>
-			<div class="max-w-lg">
-				<slot />
-			</div>
+			<slot />
 		</div>
 	</body>
 </html>

@@ -12,8 +12,8 @@ const tree = createTree(blogEntries);
 ---
 
 <nav
-	class="relative h-screen w-52 bg-blue text-white font-mono"
+	class="relative h-screen w-full sm:w-52 bg-blue text-white font-mono"
 	role="navigation"
 >
-	<NavList tree={tree} />
+	<NavList tree={tree} levelToLastChildMap={{}} />
 </nav>
