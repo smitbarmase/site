@@ -1,11 +1,19 @@
 ---
-import Panel from "../components/Panel.astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+import { createTree } from "../utils/nav";
+import NavList from "../components/NavList.astro";
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
+const blogEntries: CollectionEntry<"root">[] = await getCollection("root");
+
+const tree = createTree(blogEntries);
 ---
 
 <!doctype html>
@@ -32,82 +40,51 @@ const { title } = Astro.props;
 		/>
 		<title>{title}</title>
 	</head>
-	<body class="flex h-screen overflow-clip">
-		<Panel />
+	<body class="group font-serif flex flex-col h-screen" data-panel="closed">
 		<div
-			id="content"
-			class="flex-1 p-4 sm:px-8 sm:py-6 overflow-y-auto font-serif text-lg"
+			class="relative flex-1 flex overflow-auto group-data-[panel=open]:overflow-hidden"
 		>
-			<slot />
+			<div
+				class="fixed sm:sticky inset-x-0 top-0 bottom-12 sm:left-0 sm:bottom-0 sm:right-auto flex sm:flex-col group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
+			>
+				<nav
+					class="sm:flex-1 relative min-w-48 bg-white border-r border-black overflow-y-auto font-mono leading-tight px-3 py-2"
+				>
+					<NavList tree={tree} levelToLastChildMap={{}} />
+				</nav>
+				<div id="nav-shade" class="flex-1 sm:hidden bg-black/10"></div>
+			</div>
+			<div id="content" class="flex-1 px-4 py-3">
+				<slot />
+			</div>
+		</div>
+		<div class="sm:hidden px-4 h-12 flex items-center border-t border-black">
+			<button
+				id="show-navbar"
+				class="text-blue underline group-data-[panel=open]:hidden"
+				>read more</button
+			>
+			<button
+				id="hide-navbar"
+				class="text-blue underline group-data-[panel=closed]:hidden"
+				>hide</button
+			>
 		</div>
 	</body>
 </html>
-<script is:inline>
-	history.replaceState(
-		{ head: document.head.innerHTML, body: document.body.innerHTML },
-		null,
-		window.location.pathname
-	);
-
-	window.onpopstate = (e) => {
-		if (e.state) {
-			document.head.innerHTML = e.state.head;
-			document.body.innerHTML = e.state.body;
-		}
-	};
-
-	const loadContent = async (url) => {
-		try {
-			const response = await fetch(url);
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-			const html = await response.text();
-			const parser = new DOMParser();
-			const doc = parser.parseFromString(html, "text/html");
-			const newContent = doc.querySelector("#content").innerHTML;
-			document.getElementById("content").innerHTML = newContent;
-			document.head.innerHTML = doc.head.innerHTML;
-			history.pushState(
-				{ head: doc.head.innerHTML, body: doc.body.innerHTML },
-				null,
-				url
-			);
-		} catch (error) {
-			console.error("Error fetching the content:", error);
-		}
-	};
-
-	let selectedElement = document.querySelector("[data-selected=true]");
-	document.querySelectorAll("[data-collapsible]").forEach((link) => {
-		link.onclick = (e) => {
-			e.preventDefault();
-			if (selectedElement) {
-				if (
-					selectedElement.dataset.collapsible === "true" &&
-					selectedElement === link
-				) {
-					const listItem = selectedElement.closest("li");
-					if (listItem) {
-						const value = listItem.getAttribute("data-collapsed") === "true";
-						listItem.setAttribute("data-collapsed", String(!value));
-					}
-					return;
-				}
-				selectedElement.dataset.selected = "false";
-			}
-			link.dataset.selected = "true";
-			selectedElement = link;
-			document
-				.querySelector("[data-panel]")
-				.setAttribute("data-panel", "closed");
-			loadContent(link.getAttribute("href"));
-		};
-	});
-
-	document.getElementById("panel-switcher").onclick = (e) => {
+<script>
+	const togglePanel = (value: boolean) => {
 		const panel = document.querySelector("[data-panel]");
-		const isOpen = panel.getAttribute("data-panel") === "open";
-		panel.setAttribute("data-panel", isOpen ? "closed" : "open");
+		if (panel) {
+			panel.setAttribute("data-panel", value ? "open" : "closed");
+		}
 	};
+	const showNavabrButton = document.getElementById("show-navbar");
+	if (showNavabrButton) showNavabrButton.onclick = () => togglePanel(true);
+
+	const hideNavbarButton = document.getElementById("hide-navbar");
+	if (hideNavbarButton) hideNavbarButton.onclick = () => togglePanel(false);
+
+	const navShade = document.getElementById("nav-shade");
+	if (navShade) navShade.onclick = () => togglePanel(false);
 </script>

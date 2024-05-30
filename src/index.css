@@ -20,7 +20,9 @@
 		src: url("/fonts/NimbusRoman.woff2") format("woff2");
 		unicode-range: U+0020-007F;
 	}
-	/* Main */
+	a {
+		@apply text-blue underline;
+	}
 	#content p {
 		@apply mb-2;
 	}

@@ -1,6 +1,4 @@
 ---
-import { ChevronDown } from "lucide-astro";
-
 import type { TreeNode } from "../types";
 
 interface Props {
@@ -19,65 +17,37 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 		Object.entries(tree).map(([title, node], nodeIndex) => {
 			const { path, children, level } = node;
 
-			const isCollapsible = Object.keys(children).length > 0;
 			const isLastChild = nodeIndex === Object.entries(tree).length - 1;
 
 			const localLevelToLastChildMap = {
 				...levelToLastChildMap,
 				[level]: isLastChild,
 			};
-			// 0 -> true
-			// 1 -> false
-			// 2 -> false
-			// 3 -> true
 
 			const isSelected = path === formattedPathname;
-			const id = `list-item-${path.replace(/\//g, "-")}`;
-
 			return (
-				<li
-					id={id}
-					data-collapsed="false"
-					class="group group-data-[collapsed=true]:hidden"
-				>
-					<a
-						href={path}
-						class="group flex items-center border-l border-transparent data-[selected=true]:border-white data-[selected=true]:bg-light-blue hover:bg-light-blue"
-						data-collapsible={String(isCollapsible)}
-						data-selected={String(isSelected)}
-					>
+				<li>
+					<div class="flex">
 						{Array.from({ length: level }).map((_, index) => (
-							<div class="ml-3.5 self-stretch">
-								<div
-									style={{ height: "calc(50% + 0.5px)" }}
-									class={`border-l ${localLevelToLastChildMap[index + 1] && index !== level - 1 ? "border-transparent" : "border-lighter-blue"}`}
-								/>
-								<div
-									style={{ height: "calc(50% - 0.5px)" }}
-									class={`border-l ${localLevelToLastChildMap[index + 1] ? "border-transparent" : "border-lighter-blue"}`}
-								/>
-							</div>
-						))}
-						{isCollapsible ? (
-							<div class="flex items-center">
-								<div
-									class={`w-1 ${level !== 0 ? "border-t border-lighter-blue" : ""}`}
-								/>
-								<ChevronDown
-									size="17px"
-									stroke-width="1.6px"
-									class="ml-0.5 -mb-0.5 group-data-[collapsed=true]:-rotate-90"
-								/>
-								<div class="ml-0.5">{title}</div>
-							</div>
-						) : (
-							<span class="flex items-center">
-								<span class="w-1 border-t border-lighter-blue" />
-								<span class="ml-1.5">{title}</span>
+							<span class={index === 0 ? "" : "ml-1"}>
+								{level - 1 === index
+									? isLastChild
+										? "└"
+										: "├"
+									: localLevelToLastChildMap[index + 1]
+										? "\u00a0"
+										: "│"}
 							</span>
+						))}
+						{isSelected ? (
+							<span class={level === 0 ? "" : "ml-1"}>{title}</span>
+						) : (
+							<a href={path} class={level === 0 ? "" : "ml-1"}>
+								{title}
+							</a>
 						)}
-					</a>
-					{isCollapsible && (
+					</div>
+					{Object.keys(children).length > 0 && (
 						<Astro.self
 							tree={children}
 							levelToLastChildMap={localLevelToLastChildMap}

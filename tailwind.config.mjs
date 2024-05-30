@@ -2,16 +2,16 @@
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
-		extend: {
-			fontFamily: {
-				serif: ["NimbusRoman", "sans-serif"],
-				mono: ["NimbusMono", "monospace"],
-			},
-			colors: {
-				blue: "#0000FF",
-				"light-blue": "#3333FF",
-				"lighter-blue": "#6e6efe",
-			},
+		fontFamily: {
+			serif: ["NimbusRoman", "sans-serif"],
+			mono: ["NimbusMono", "monospace"],
+		},
+		colors: {
+			white: "#FFFFFF",
+			blue: "#0000FF",
+			black: "#000000",
+			transparent: "transparent",
+			red: "#FF0000",
 		},
 	},
 	plugins: [],

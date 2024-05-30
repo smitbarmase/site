@@ -30,9 +30,7 @@ export function createTree(
 		const updatePath = `root.children.${parts
 			.map(
 				(part, index) =>
-					`${part.split("-").join(" ")}${
-						index !== parts.length - 1 ? ".children" : ""
-					}`
+					`${part}${index !== parts.length - 1 ? ".children" : ""}`
 			)
 			.join(".")}`;
 		dset(tree, updatePath, node);
