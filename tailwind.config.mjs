@@ -7,11 +7,10 @@ export default {
 			mono: ["NimbusMono", "monospace"],
 		},
 		colors: {
-			white: "#FFFFFF",
-			blue: "#0000FF",
+			white: "#ffffff",
+			blue: "#0000ff",
 			black: "#000000",
 			transparent: "transparent",
-			red: "#FF0000",
 		},
 	},
 	plugins: [],

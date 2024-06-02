@@ -40,7 +40,7 @@ const tree = createTree(blogEntries);
 		/>
 		<title>{title}</title>
 	</head>
-	<body class="group font-serif flex flex-col h-screen" data-panel="closed">
+	<body class="group font-serif flex flex-col h-dvh" data-panel="closed">
 		<div
 			class="relative flex-1 flex overflow-auto group-data-[panel=open]:overflow-hidden"
 		>
@@ -48,7 +48,7 @@ const tree = createTree(blogEntries);
 				class="fixed sm:sticky inset-x-0 top-0 bottom-12 sm:left-0 sm:bottom-0 sm:right-auto flex sm:flex-col group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
 			>
 				<nav
-					class="sm:flex-1 relative min-w-48 bg-white border-r border-black overflow-y-auto font-mono leading-tight px-3 py-2"
+					class="sm:flex-1 relative min-w-48 bg-white border-r border-black overflow-y-auto px-3 py-2 leading-tight"
 				>
 					<NavList tree={tree} levelToLastChildMap={{}} />
 				</nav>

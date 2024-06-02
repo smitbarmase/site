@@ -29,15 +29,58 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 				<li>
 					<div class="flex">
 						{Array.from({ length: level }).map((_, index) => (
-							<span class={index === 0 ? "" : "ml-1"}>
-								{level - 1 === index
-									? isLastChild
-										? "└"
-										: "├"
-									: localLevelToLastChildMap[index + 1]
-										? "\u00a0"
-										: "│"}
-							</span>
+							<svg
+								width="8"
+								height="20"
+								viewBox="0 0 8 20"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class={index === 0 ? "ml-1" : "ml-2"}
+							>
+								{level - 1 === index ? (
+									isLastChild ? (
+										// up left arrow
+										<>
+											<path
+												d="M0.5 0.5V10"
+												stroke="black"
+												stroke-width="1"
+												stroke-linecap="square"
+											/>
+											<path
+												d="M1.5 10H7.5"
+												stroke="black"
+												stroke-width="1"
+												stroke-linecap="square"
+											/>
+										</>
+									) : (
+										// up down left arrow
+										<>
+											<path
+												d="M0.5 0.5V19.5"
+												stroke="black"
+												stroke-width="1"
+												stroke-linecap="square"
+											/>
+											<path
+												d="M1.5 10H7.5"
+												stroke="black"
+												stroke-width="1"
+												stroke-linecap="square"
+											/>
+										</>
+									)
+								) : localLevelToLastChildMap[index + 1] ? null : ( // blank
+									// up down arrow
+									<path
+										d="M0.5 0.5V19.5"
+										stroke="black"
+										stroke-width="1"
+										stroke-linecap="square"
+									/>
+								)}
+							</svg>
 						))}
 						{isSelected ? (
 							<span class={level === 0 ? "" : "ml-1"}>{title}</span>
