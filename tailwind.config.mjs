@@ -7,9 +7,10 @@ export default {
 			mono: ["NimbusMono", "monospace"],
 		},
 		colors: {
-			white: "#ffffff",
+			white: "#f6f6f6",
 			blue: "#0000ff",
-			black: "#000000",
+			lightblue: "#599eff",
+			black: "#1c1c1c",
 			transparent: "transparent",
 		},
 	},

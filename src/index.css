@@ -20,8 +20,11 @@
 		src: url("/fonts/NimbusRoman.woff2") format("woff2");
 		unicode-range: U+0020-007F;
 	}
+	body {
+		@apply text-black dark:bg-black dark:text-white;
+	}
 	a {
-		@apply text-blue underline;
+		@apply text-blue dark:text-lightblue underline;
 	}
 	#content p {
 		@apply mb-2;

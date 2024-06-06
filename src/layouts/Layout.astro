@@ -48,7 +48,7 @@ const tree = createTree(blogEntries);
 				class="fixed sm:sticky inset-x-0 top-0 bottom-12 sm:left-0 sm:bottom-0 sm:right-auto flex sm:flex-col group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
 			>
 				<nav
-					class="sm:flex-1 relative min-w-48 bg-white border-r border-black overflow-y-auto px-3 py-2 leading-tight"
+					class="sm:flex-1 relative min-w-60 border-r bg-white dark:bg-black border-black dark:border-white overflow-y-auto px-3 py-2 leading-tight"
 				>
 					<NavList tree={tree} levelToLastChildMap={{}} />
 				</nav>
@@ -58,15 +58,17 @@ const tree = createTree(blogEntries);
 				<slot />
 			</div>
 		</div>
-		<div class="sm:hidden px-4 h-12 flex items-center border-t border-black">
+		<div
+			class="sm:hidden px-4 h-12 flex items-center border-t border-black dark:border-white"
+		>
 			<button
 				id="show-navbar"
-				class="text-blue underline group-data-[panel=open]:hidden"
+				class="text-blue dark:text-lightblue underline group-data-[panel=open]:hidden"
 				>read more</button
 			>
 			<button
 				id="hide-navbar"
-				class="text-blue underline group-data-[panel=closed]:hidden"
+				class="text-blue dark:text-lightblue underline group-data-[panel=closed]:hidden"
 				>hide</button
 			>
 		</div>
