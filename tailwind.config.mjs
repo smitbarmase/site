@@ -6,8 +6,8 @@ export default {
 			sans: ["PlexSerif", "sans-serif"],
 		},
 		colors: {
-			white: "#fffdea",
-			black: "#121212",
+			white: "#fff",
+			black: "#000",
 			blue: "#00f",
 		},
 	},
