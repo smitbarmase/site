@@ -3,14 +3,12 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		fontFamily: {
-			serif: ["Georgia", "sans-serif"],
+			sans: ["PlexSerif", "sans-serif"],
 		},
 		colors: {
-			white: "#f6f6f6",
-			blue: "#0000ff",
-			lightblue: "#599eff",
-			black: "#1c1c1c",
-			transparent: "transparent",
+			white: "#fffdea",
+			black: "#121212",
+			blue: "#00f",
 		},
 	},
 	plugins: [],

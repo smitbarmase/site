@@ -3,11 +3,18 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply text-black dark:bg-black dark:text-white;
+	@font-face {
+		font-family: "PlexSerif";
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url("/fonts/PlexSerif.woff2") format("woff2");
 	}
 	a {
-		@apply text-blue dark:text-lightblue underline;
+		@apply text-blue underline;
+	}
+	#content h1 {
+		@apply text-xl mb-4;
 	}
 	#content p {
 		@apply mb-2;
