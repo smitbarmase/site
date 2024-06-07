@@ -24,20 +24,6 @@ const tree = createTree(blogEntries);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<link
-			rel="preload"
-			href="/fonts/NimbusRoman.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>
-		<link
-			rel="preload"
-			href="/fonts/NimbusMono.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>
 		<title>{title}</title>
 	</head>
 	<body class="group font-serif flex flex-col h-dvh" data-panel="closed">
@@ -52,7 +38,11 @@ const tree = createTree(blogEntries);
 				>
 					<NavList tree={tree} levelToLastChildMap={{}} />
 				</nav>
-				<div id="nav-shade" class="flex-1 sm:hidden bg-black/10"></div>
+				<div
+					id="nav-shade"
+					class="flex-1 sm:hidden bg-black/10 dark:bg-black/80"
+				>
+				</div>
 			</div>
 			<div id="content" class="flex-1 px-4 py-3">
 				<slot />

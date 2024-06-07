@@ -3,8 +3,7 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		fontFamily: {
-			serif: ["NimbusRoman", "sans-serif"],
-			mono: ["NimbusMono", "monospace"],
+			serif: ["Georgia", "sans-serif"],
 		},
 		colors: {
 			white: "#f6f6f6",

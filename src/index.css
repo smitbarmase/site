@@ -3,23 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-	/* Font */
-	@font-face {
-		font-family: "NimbusMono";
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url("/fonts/NimbusMono.woff2") format("woff2");
-		unicode-range: U+0020-007F;
-	}
-	@font-face {
-		font-family: "NimbusRoman";
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url("/fonts/NimbusRoman.woff2") format("woff2");
-		unicode-range: U+0020-007F;
-	}
 	body {
 		@apply text-black dark:bg-black dark:text-white;
 	}
