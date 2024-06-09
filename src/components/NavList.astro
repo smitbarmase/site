@@ -36,7 +36,10 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 								viewBox="0 0 8 20"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class={clsx("stroke-black", index === 0 ? "ml-1" : "ml-2")}
+								class={clsx(
+									"stroke-black dark:stroke-white",
+									index === 0 ? "ml-1" : "ml-2"
+								)}
 							>
 								{level - 1 === index ? (
 									isLastChild ? (

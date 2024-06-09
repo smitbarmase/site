@@ -11,10 +11,11 @@
 		src: url("/fonts/NimbusRomNo9L.woff2") format("woff2");
 	}
 	body {
-		@apply text-lg text-black bg-yellow flex flex-col h-dvh;
+		@apply text-lg text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
 	}
-	a {
-		@apply text-blue active:text-red underline;
+	a,
+	.link {
+		@apply text-blue dark:text-lightblue active:text-red underline;
 	}
 	#content p {
 		@apply mb-2;
