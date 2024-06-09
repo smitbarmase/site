@@ -30,42 +30,32 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/PlexSerif.woff2"
+			href="/fonts/NimbusRomNo9L.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<title>{title}</title>
 	</head>
-
 	<body class="group" data-panel="closed">
 		<div
 			class="relative flex-1 flex overflow-auto group-data-[panel=open]:overflow-hidden"
 		>
 			<div
-				class="fixed sm:sticky inset-x-0 top-0 bottom-12 sm:left-0 sm:bottom-0 sm:right-auto flex sm:flex-col group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
+				class="fixed sm:relative inset-0 flex group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
 			>
-				<nav
-					class="sm:flex-1 relative bg-yellow overflow-y-auto pl-3 pr-6 py-2 leading-5"
-				>
+				<nav class="bg-yellow overflow-y-auto p-4 leading-5">
 					<NavList tree={tree} levelToLastChildMap={{}} />
 				</nav>
 				<div id="nav-shade" class="flex-1 sm:hidden bg-black/10"></div>
 			</div>
-			<div id="content" class="flex-1 p-4 sm:px-6 max-w-xl">
+			<div id="content" class="flex-1 p-4 max-w-xl">
 				<slot />
 			</div>
 		</div>
 		<div class="sm:hidden px-4 h-12 flex items-center border-t border-black">
-			<button
-				id="show-navbar"
-				class="text-blue active:text-red underline group-data-[panel=open]:hidden"
+			<button id="show-navbar" class="text-blue active:text-red underline"
 				>browse</button
-			>
-			<button
-				id="hide-navbar"
-				class="text-blue active:text-red underline group-data-[panel=closed]:hidden"
-				>back</button
 			>
 		</div>
 	</body>
@@ -78,9 +68,6 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 		};
 		const showNavbarButton = document.getElementById("show-navbar");
 		if (showNavbarButton) showNavbarButton.onclick = () => togglePanel(true);
-
-		const hideNavbarButton = document.getElementById("hide-navbar");
-		if (hideNavbarButton) hideNavbarButton.onclick = () => togglePanel(false);
 
 		const navShade = document.getElementById("nav-shade");
 		if (navShade) navShade.onclick = () => togglePanel(false);
