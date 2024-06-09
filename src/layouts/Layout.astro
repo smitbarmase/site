@@ -30,12 +30,60 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/NimbusRomNo9L.woff2"
+			href="/fonts/Gelasio.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<title>{title}</title>
+		<script>
+			// nav toggle code
+			const togglePanel = (value: boolean) => {
+				const panel = document.querySelector("[data-panel]");
+				if (panel) {
+					panel.setAttribute("data-panel", value ? "open" : "closed");
+				}
+			};
+			// use button to toggle nav
+			const showNavbarButton = document.getElementById("show-navbar");
+			if (showNavbarButton) showNavbarButton.onclick = () => togglePanel(true);
+
+			const navShade = document.getElementById("nav-shade");
+			if (navShade) navShade.onclick = () => togglePanel(false);
+
+			// theme toggle code
+			const body = document.body;
+			const toggleThemeButton = document.getElementById("toggle-theme");
+
+			const isDarkTheme = () => body.classList.contains("dark");
+
+			const updateButton = () => {
+				if (toggleThemeButton) {
+					toggleThemeButton.textContent = isDarkTheme()
+						? "lights on"
+						: "lights off";
+				}
+			};
+
+			const toggleTheme = () => {
+				const isDark = isDarkTheme();
+				body.classList.toggle("dark", !isDark);
+				localStorage.setItem("theme", isDark ? "light" : "dark");
+				updateButton();
+			};
+
+			// use button to toggle theme
+			if (toggleThemeButton) toggleThemeButton.onclick = toggleTheme;
+
+			// Use system theme by default
+			const prefersDark =
+				window.matchMedia &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches;
+			const storedTheme = localStorage.getItem("theme");
+			const theme = storedTheme ? storedTheme : prefersDark ? "dark" : "light";
+			body.classList.toggle("dark", theme === "dark");
+			updateButton();
+		</script>
 	</head>
 	<body class="group" data-panel="closed">
 		<div
@@ -61,42 +109,7 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 			class="px-4 h-12 flex justify-between items-center border-t border-darkyellow dark:border-lightgray"
 		>
 			<button id="show-navbar" class="sm:hidden link">browse</button>
-			<button id="toggle-theme" class="link">lights</button>
+			<button id="toggle-theme" class="link"></button>
 		</div>
 	</body>
-	<script>
-		// nav toggle code
-		const togglePanel = (value: boolean) => {
-			const panel = document.querySelector("[data-panel]");
-			if (panel) {
-				panel.setAttribute("data-panel", value ? "open" : "closed");
-			}
-		};
-		// use button to toggle nav
-		const showNavbarButton = document.getElementById("show-navbar");
-		if (showNavbarButton) showNavbarButton.onclick = () => togglePanel(true);
-
-		const navShade = document.getElementById("nav-shade");
-		if (navShade) navShade.onclick = () => togglePanel(false);
-
-		// theme toggle code
-		const body = document.body;
-		const toggleTheme = () => {
-			const isDark = body.classList.contains("dark");
-			body.classList.toggle("dark", !isDark);
-			localStorage.setItem("theme", isDark ? "light" : "dark");
-		};
-
-		// use button to toggle theme
-		const toggleThemeButton = document.getElementById("toggle-theme");
-		if (toggleThemeButton) toggleThemeButton.onclick = toggleTheme;
-
-		// Use system theme by default
-		const prefersDark =
-			window.matchMedia &&
-			window.matchMedia("(prefers-color-scheme: dark)").matches;
-		const storedTheme = localStorage.getItem("theme");
-		const theme = storedTheme ? storedTheme : prefersDark ? "dark" : "light";
-		body.classList.toggle("dark", theme === "dark");
-	</script>
 </html>

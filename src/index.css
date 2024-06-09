@@ -4,14 +4,14 @@
 
 @layer base {
 	@font-face {
-		font-family: "NimbusRomNo9L";
+		font-family: "Gelasio";
 		font-style: normal;
 		font-weight: 400;
 		font-display: swap;
-		src: url("/fonts/NimbusRomNo9L.woff2") format("woff2");
+		src: url("/fonts/Gelasio.woff2") format("woff2");
 	}
 	body {
-		@apply text-lg text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
+		@apply text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
 	}
 	a,
 	.link {
