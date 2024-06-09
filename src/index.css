@@ -4,17 +4,20 @@
 
 @layer base {
 	@font-face {
-		font-family: "PlexSerif";
+		font-family: "NimbusRomNo9L";
 		font-style: normal;
 		font-weight: 400;
 		font-display: swap;
-		src: url("/fonts/PlexSerif.woff2") format("woff2");
+		src: url("/fonts/NimbusRomNo9L.woff2") format("woff2");
+	}
+	body {
+		@apply text-black bg-yellow flex flex-col h-dvh;
 	}
 	a {
-		@apply text-blue underline;
+		@apply text-blue active:text-red underline;
 	}
 	#content h1 {
-		@apply text-xl mb-4;
+		@apply text-2xl mb-4;
 	}
 	#content p {
 		@apply mb-2;

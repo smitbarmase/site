@@ -2,8 +2,6 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-import "../index.css";
-
 import Layout from "../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -21,11 +19,10 @@ interface Props {
 const { entry } = Astro.props;
 
 const slug = entry.slug.split("/").pop() ?? "";
-const title = `${slug === "index" ? "" : `${slug.split("-").join(" ")} - `}smit barmase's website`;
 
 const { Content } = await entry.render();
 ---
 
-<Layout title={title}>
+<Layout title={slug.split("-").join(" ")}>
 	<Content />
 </Layout>

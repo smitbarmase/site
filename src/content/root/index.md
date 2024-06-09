@@ -1,3 +1,1 @@
-# Hello, People of the Internet
-
-I'm Smit.
+Hello, People of the Internet.
