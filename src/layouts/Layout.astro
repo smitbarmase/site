@@ -92,16 +92,14 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 			<div
 				class="fixed sm:relative inset-0 flex group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
 			>
-				<nav class="bg-yellow dark:bg-gray overflow-y-auto p-4 leading-5">
+				<nav
+					class="bg-yellow dark:bg-gray overflow-y-auto p-4 shadow-sm sm:shadow-none sm:border-r border-darkyellow dark:border-lightgray leading-5"
+				>
 					<NavList tree={tree} levelToLastChildMap={{}} />
 				</nav>
-				<div
-					id="nav-shade"
-					class="flex-1 sm:hidden bg-black/10 dark:bg-white/10"
-				>
-				</div>
+				<div id="nav-shade" class="flex-1 sm:hidden bg-black/40"></div>
 			</div>
-			<div id="content" class="flex-1 p-4 max-w-xl">
+			<div id="content" class="flex-1 p-4 sm:px-10 sm:py-8 max-w-xl">
 				<slot />
 			</div>
 		</div>
