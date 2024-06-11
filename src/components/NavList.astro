@@ -28,7 +28,7 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 			const isSelected = path === formattedPathname;
 			return (
 				<li>
-					<div class="flex items-center h-7 sm:h-6">
+					<div class="flex items-center h-6 sm:h-5">
 						{Array.from({ length: level }).map((_, index) => (
 							<svg
 								height="100%"
