@@ -8,7 +8,7 @@ export function createTree(
 	entries: CollectionEntry<"root">[]
 ): Record<string, TreeNode> {
 	const tree: Record<string, TreeNode> = {
-		index: {
+		home: {
 			children: {},
 			path: "/",
 			level: 0,
@@ -27,7 +27,7 @@ export function createTree(
 			path: `/${parts.join("/")}`,
 			level: parts.length,
 		};
-		const updatePath = `index.children.${parts
+		const updatePath = `home.children.${parts
 			.map(
 				(part, index) =>
 					`${part}${index !== parts.length - 1 ? ".children" : ""}`
