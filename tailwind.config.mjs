@@ -4,21 +4,21 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		fontFamily: {
-			sans: ["Gelasio", "sans-serif"],
+			sans: ["LibertinusSerif", "sans-serif"],
 		},
 		colors: {
-			// light
-			gray: "#222",
-			lightgray: "#333",
-			white: "#fff",
-			blue: "#00f",
 			// dark
-			yellow: "#ffd",
-			darkyellow: "#cc8",
-			black: "#000",
-			lightblue: "#19f",
+			gray: "#1b1b1b",
+			lightgray: "#2c2c2c",
+			white: "#efefef",
+			blue: "#0000ff",
+			// light
+			yellow: "#ffffdd",
+			darkyellow: "#efefb9",
+			black: "#0d0d0d",
+			lightblue: "#2f9bee",
 			// common
-			red: "#f00",
+			red: "#f00000",
 		},
 	},
 	plugins: [],

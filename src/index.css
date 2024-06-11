@@ -4,11 +4,11 @@
 
 @layer base {
 	@font-face {
-		font-family: "Gelasio";
+		font-family: "LibertinusSerif";
 		font-style: normal;
 		font-weight: 400;
 		font-display: swap;
-		src: url("/fonts/Gelasio.woff2") format("woff2");
+		src: url("/fonts/LibertinusSerif.woff2") format("woff2");
 	}
 	body {
 		@apply text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;

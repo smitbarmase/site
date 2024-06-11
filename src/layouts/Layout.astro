@@ -30,7 +30,7 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/Gelasio.woff2"
+			href="/fonts/LibertinusSerif.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -54,12 +54,20 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 			// theme toggle code
 			const body = document.body;
 			const toggleThemeButton = document.getElementById("toggle-theme");
+			const toggleThemeDesktopButton = document.getElementById(
+				"toggle-theme-desktop"
+			);
 
 			const isDarkTheme = () => body.classList.contains("dark");
 
 			const updateButton = () => {
 				if (toggleThemeButton) {
 					toggleThemeButton.textContent = isDarkTheme()
+						? "lights on"
+						: "lights off";
+				}
+				if (toggleThemeDesktopButton) {
+					toggleThemeDesktopButton.textContent = isDarkTheme()
 						? "lights on"
 						: "lights off";
 				}
@@ -74,6 +82,8 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 
 			// use button to toggle theme
 			if (toggleThemeButton) toggleThemeButton.onclick = toggleTheme;
+			if (toggleThemeDesktopButton)
+				toggleThemeDesktopButton.onclick = toggleTheme;
 
 			// Use system theme by default
 			const prefersDark =
@@ -93,20 +103,27 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 				class="fixed sm:relative inset-0 flex group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
 			>
 				<nav
-					class="bg-yellow dark:bg-gray overflow-y-auto p-4 shadow-sm sm:shadow-none sm:border-r border-darkyellow dark:border-lightgray leading-5"
+					class="flex flex-col bg-yellow dark:bg-gray shadow-sm sm:shadow-none sm:border-r border-darkyellow dark:border-lightgray"
 				>
-					<NavList tree={tree} levelToLastChildMap={{}} />
+					<div class="flex-1 overflow-y-auto leading-5 p-4">
+						<NavList tree={tree} levelToLastChildMap={{}} />
+					</div>
+					<div
+						class="hidden sm:flex px-4 h-12 border-t border-darkyellow dark:border-lightgray"
+					>
+						<button id="toggle-theme-desktop" class="link"></button>
+					</div>
 				</nav>
 				<div id="nav-shade" class="flex-1 sm:hidden bg-black/40"></div>
 			</div>
-			<div id="content" class="flex-1 p-4 sm:px-10 sm:py-8 max-w-xl">
+			<div id="content" class="flex-1 p-4 sm:px-6 max-w-xl">
 				<slot />
 			</div>
 		</div>
 		<div
-			class="px-4 h-12 flex justify-between items-center border-t border-darkyellow dark:border-lightgray"
+			class="sm:hidden px-4 h-12 flex justify-between items-center border-t border-darkyellow dark:border-lightgray"
 		>
-			<button id="show-navbar" class="sm:hidden link">browse</button>
+			<button id="show-navbar" class="link">browse</button>
 			<button id="toggle-theme" class="link"></button>
 		</div>
 	</body>
