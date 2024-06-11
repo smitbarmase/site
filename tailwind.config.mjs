@@ -9,12 +9,12 @@ export default {
 		colors: {
 			// dark
 			gray: "#1b1b1b",
-			lightgray: "#2c2c2c",
+			lightgray: "#323232",
 			white: "#efefef",
 			blue: "#0000ff",
 			// light
 			yellow: "#ffffdd",
-			darkyellow: "#efefb9",
+			darkyellow: "#e4e4ac",
 			black: "#0d0d0d",
 			lightblue: "#2f9bee",
 			// common
