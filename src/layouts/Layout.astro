@@ -105,23 +105,23 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 				<nav
 					class="flex flex-col bg-yellow dark:bg-gray shadow-sm sm:shadow-none sm:border-r border-darkyellow dark:border-lightgray"
 				>
-					<div class="flex-1 overflow-y-auto leading-5 p-4">
+					<div class="flex-1 overflow-y-auto px-4 py-3">
 						<NavList tree={tree} levelToLastChildMap={{}} />
 					</div>
 					<div
-						class="hidden sm:flex px-4 h-12 border-t border-darkyellow dark:border-lightgray"
+						class="hidden sm:flex px-4 py-3 border-t border-darkyellow dark:border-lightgray"
 					>
 						<button id="toggle-theme-desktop" class="link"></button>
 					</div>
 				</nav>
 				<div id="nav-shade" class="flex-1 sm:hidden bg-black/40"></div>
 			</div>
-			<div id="content" class="flex-1 p-4 sm:px-6 max-w-xl">
+			<div id="content" class="flex-1 px-4 py-3 max-w-xl">
 				<slot />
 			</div>
 		</div>
 		<div
-			class="sm:hidden px-4 h-12 flex justify-between items-center border-t border-darkyellow dark:border-lightgray"
+			class="sm:hidden px-4 py-3 flex justify-between items-center border-t border-darkyellow dark:border-lightgray"
 		>
 			<button id="show-navbar" class="link">browse</button>
 			<button id="toggle-theme" class="link"></button>

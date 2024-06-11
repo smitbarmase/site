@@ -11,7 +11,7 @@
 		src: url("/fonts/LibertinusSerif.woff2") format("woff2");
 	}
 	body {
-		@apply text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
+		@apply text-lg sm:text-base text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
 	}
 	a,
 	.link {
