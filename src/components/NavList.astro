@@ -3,8 +3,8 @@ import clsx from "clsx";
 import type { TreeNode } from "../types";
 
 interface Props {
-	tree: Record<string, TreeNode>;
-	levelToLastChildMap: Record<number, boolean>;
+    tree: Record<string, TreeNode>;
+    levelToLastChildMap: Record<number, boolean>;
 }
 
 const { tree, levelToLastChildMap } = Astro.props;
@@ -14,88 +14,92 @@ const formattedPathname = pathname !== "/" ? pathname.replace(/\/$/, "") : "/";
 ---
 
 <ul>
-	{
-		Object.entries(tree).map(([title, node], nodeIndex) => {
-			const { path, children, level } = node;
+    {
+        Object.entries(tree).map(([title, node], nodeIndex) => {
+            const { path, children, level } = node;
 
-			const isLastChild = nodeIndex === Object.entries(tree).length - 1;
+            const isLastChild = nodeIndex === Object.entries(tree).length - 1;
 
-			const localLevelToLastChildMap = {
-				...levelToLastChildMap,
-				[level]: isLastChild,
-			};
+            const localLevelToLastChildMap = {
+                ...levelToLastChildMap,
+                [level]: isLastChild,
+            };
 
-			const isSelected = path === formattedPathname;
-			return (
-				<li>
-					<div class="flex items-center h-6 sm:h-5">
-						{Array.from({ length: level }).map((_, index) => (
-							<svg
-								height="100%"
-								viewBox="0 0 8 20"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-								class={clsx(
-									"stroke-darkyellow dark:stroke-lightgray",
-									index === 0 ? "ml-1" : "ml-2"
-								)}
-							>
-								{level - 1 === index ? (
-									isLastChild ? (
-										// up left arrow
-										<>
-											<path
-												d="M0.5 0.5V10"
-												stroke-width="1"
-												stroke-linecap="square"
-											/>
-											<path
-												d="M1.5 10H7.5"
-												stroke-width="1"
-												stroke-linecap="square"
-											/>
-										</>
-									) : (
-										// up down left arrow
-										<>
-											<path
-												d="M0.5 0.5V19.5"
-												stroke-width="1"
-												stroke-linecap="square"
-											/>
-											<path
-												d="M1.5 10H7.5"
-												stroke-width="1"
-												stroke-linecap="square"
-											/>
-										</>
-									)
-								) : localLevelToLastChildMap[index + 1] ? null : ( // blank
-									// up down arrow
-									<path
-										d="M0.5 0.5V19.5"
-										stroke-width="1"
-										stroke-linecap="square"
-									/>
-								)}
-							</svg>
-						))}
-						{isSelected ? (
-							<span class={level === 0 ? "" : "ml-1"}>{title}</span>
-						) : (
-							<a href={path} class={level === 0 ? "" : "ml-1"}>
-								{title}
-							</a>
-						)}
-					</div>
-					{Object.keys(children).length > 0 && (
-						<Astro.self
-							tree={children}
-							levelToLastChildMap={localLevelToLastChildMap}
-						/>
-					)}
-				</li>
-			);
-		})
-	}
+            const isSelected = path === formattedPathname;
+            return (
+                <li>
+                    <div class="flex items-center h-6 sm:h-5">
+                        {Array.from({ length: level }).map((_, index) => (
+                            <svg
+                                height="100%"
+                                viewBox="0 0 8 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class={clsx(
+                                    "stroke-lightgray dark:stroke-gray",
+                                    index === 0 ? "ml-1" : "ml-2",
+                                )}
+                            >
+                                {level - 1 === index ? (
+                                    isLastChild ? (
+                                        // up left arrow
+                                        <>
+                                            <path
+                                                d="M0.5 0.5V10"
+                                                stroke-width="1"
+                                                stroke-linecap="square"
+                                            />
+                                            <path
+                                                d="M1.5 10H7.5"
+                                                stroke-width="1"
+                                                stroke-linecap="square"
+                                            />
+                                        </>
+                                    ) : (
+                                        // up down left arrow
+                                        <>
+                                            <path
+                                                d="M0.5 0.5V19.5"
+                                                stroke-width="1"
+                                                stroke-linecap="square"
+                                            />
+                                            <path
+                                                d="M1.5 10H7.5"
+                                                stroke-width="1"
+                                                stroke-linecap="square"
+                                            />
+                                        </>
+                                    )
+                                ) : localLevelToLastChildMap[
+                                      index + 1
+                                  ] ? null : ( // blank
+                                    // up down arrow
+                                    <path
+                                        d="M0.5 0.5V19.5"
+                                        stroke-width="1"
+                                        stroke-linecap="square"
+                                    />
+                                )}
+                            </svg>
+                        ))}
+                        {isSelected ? (
+                            <span class={level === 0 ? "" : "ml-1"}>
+                                {title}
+                            </span>
+                        ) : (
+                            <a href={path} class={level === 0 ? "" : "ml-1"}>
+                                {title}
+                            </a>
+                        )}
+                    </div>
+                    {Object.keys(children).length > 0 && (
+                        <Astro.self
+                            tree={children}
+                            levelToLastChildMap={localLevelToLastChildMap}
+                        />
+                    )}
+                </li>
+            );
+        })
+    }
 </ul>

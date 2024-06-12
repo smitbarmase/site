@@ -3,24 +3,24 @@
 @tailwind utilities;
 
 @layer base {
-	@font-face {
-		font-family: "LibertinusSerif";
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url("/fonts/LibertinusSerif.woff2") format("woff2");
-	}
-	body {
-		@apply text-lg sm:text-base text-black bg-yellow dark:text-white dark:bg-gray flex flex-col h-dvh;
-	}
-	a,
-	.link {
-		@apply text-blue dark:text-lightblue active:text-red underline;
-	}
-	#content p {
-		@apply mb-2;
-	}
-	#content ul {
-		@apply list-disc list-inside;
-	}
+    @font-face {
+        font-family: "LibertinusSerif";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/LibertinusSerif.woff2") format("woff2");
+    }
+    body {
+        @apply text-lg sm:text-base text-darkgray bg-white dark:text-white dark:bg-darkgray flex flex-col h-dvh;
+    }
+    a,
+    .link {
+        @apply text-blue dark:text-lightblue active:text-red underline;
+    }
+    #content p {
+        @apply mb-2;
+    }
+    #content ul {
+        @apply list-disc list-inside;
+    }
 }
