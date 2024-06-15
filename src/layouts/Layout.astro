@@ -1,18 +1,9 @@
 ---
+import "../reset.css";
 import "../index.css";
 
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-
-import { createTree } from "../utils/nav";
-import NavList from "../components/NavList.astro";
-
-const blogEntries: CollectionEntry<"root">[] = await getCollection("root");
-
-const tree = createTree(blogEntries);
-
 interface Props {
-    title?: string;
+	title?: string;
 }
 
 const { title: partialTitle = "not found" } = Astro.props;
@@ -22,114 +13,31 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="Astro description" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <link
-            rel="preload"
-            href="/fonts/LibertinusSerif.woff2"
-            as="font"
-            type="font/woff2"
-            crossorigin
-        />
-        <title>{title}</title>
-        <script>
-            // nav toggle code
-            const togglePanel = (value: boolean) => {
-                const panel = document.querySelector("[data-panel]");
-                if (panel) {
-                    panel.setAttribute("data-panel", value ? "open" : "closed");
-                }
-            };
-            // use button to toggle nav
-            const showNavbarButton = document.getElementById("show-navbar");
-            if (showNavbarButton)
-                showNavbarButton.onclick = () => togglePanel(true);
-
-            const navShade = document.getElementById("nav-shade");
-            if (navShade) navShade.onclick = () => togglePanel(false);
-
-            // theme toggle code
-            const body = document.body;
-            const toggleThemeButton = document.getElementById("toggle-theme");
-            const toggleThemeDesktopButton = document.getElementById(
-                "toggle-theme-desktop",
-            );
-
-            const isDarkTheme = () => body.classList.contains("dark");
-
-            const updateButton = () => {
-                if (toggleThemeButton) {
-                    toggleThemeButton.textContent = isDarkTheme()
-                        ? "lights on"
-                        : "lights off";
-                }
-                if (toggleThemeDesktopButton) {
-                    toggleThemeDesktopButton.textContent = isDarkTheme()
-                        ? "lights on"
-                        : "lights off";
-                }
-            };
-
-            const toggleTheme = () => {
-                const isDark = isDarkTheme();
-                body.classList.toggle("dark", !isDark);
-                localStorage.setItem("theme", isDark ? "light" : "dark");
-                updateButton();
-            };
-
-            // use button to toggle theme
-            if (toggleThemeButton) toggleThemeButton.onclick = toggleTheme;
-            if (toggleThemeDesktopButton)
-                toggleThemeDesktopButton.onclick = toggleTheme;
-
-            // Use system theme by default
-            const prefersDark =
-                window.matchMedia &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const storedTheme = localStorage.getItem("theme");
-            const theme = storedTheme
-                ? storedTheme
-                : prefersDark
-                  ? "dark"
-                  : "light";
-            body.classList.toggle("dark", theme === "dark");
-            updateButton();
-        </script>
-    </head>
-    <body class="group" data-panel="closed">
-        <div
-            class="relative flex-1 flex overflow-auto group-data-[panel=open]:overflow-hidden"
-        >
-            <div
-                class="fixed sm:relative inset-0 flex group-data-[panel=closed]:hidden sm:group-data-[panel=closed]:flex"
-            >
-                <nav
-                    class="flex flex-col bg-white dark:bg-darkgray shadow-sm sm:shadow-none sm:border-r border-lightgray dark:border-gray"
-                >
-                    <div class="flex-1 overflow-y-auto px-4 py-3">
-                        <NavList tree={tree} levelToLastChildMap={{}} />
-                    </div>
-                    <div
-                        class="hidden sm:flex px-4 py-3 border-t border-lightgray dark:border-gray"
-                    >
-                        <button id="toggle-theme-desktop" class="link"></button>
-                    </div>
-                </nav>
-                <div id="nav-shade" class="flex-1 sm:hidden bg-black/40"></div>
-            </div>
-            <div id="content" class="flex-1 px-4 py-3 max-w-xl">
-                <slot />
-            </div>
-        </div>
-        <div
-            class="sm:hidden px-4 py-3 flex justify-between items-center border-t border-lightgray dark:border-gray"
-        >
-            <button id="show-navbar" class="link">browse</button>
-            <button id="toggle-theme" class="link"></button>
-        </div>
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="preload"
+			href="/fonts/plex-sans.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<title>{title}</title>
+		<script src="../scripts/theme.ts"></script>
+	</head>
+	<body>
+		<div id="container">
+			<nav>
+				<a href="/">home</a>
+				<button id="toggle-theme" class="link"></button>
+			</nav>
+			<div id="content">
+				<slot />
+			</div>
+		</div>
+	</body>
 </html>

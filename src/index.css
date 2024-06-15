@@ -1,26 +1,91 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+	font-family: "IBM Plex Sans";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/plex-sans.woff2") format("woff2");
+}
 
-@layer base {
-    @font-face {
-        font-family: "LibertinusSerif";
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url("/fonts/LibertinusSerif.woff2") format("woff2");
-    }
-    body {
-        @apply text-lg sm:text-base text-darkgray bg-white dark:text-white dark:bg-darkgray flex flex-col h-dvh;
-    }
-    a,
-    .link {
-        @apply text-blue dark:text-lightblue active:text-red underline;
-    }
-    #content p {
-        @apply mb-2;
-    }
-    #content ul {
-        @apply list-disc list-inside;
-    }
+:root {
+	--background: #d8d2cb;
+	--background-dark: #161616;
+
+	--shade: #c8c2ba;
+	--shade-dark: #1b1b1b;
+
+	--link: #002080;
+	--link-dark: #2f9bee;
+}
+
+body {
+	font-family: "IBM Plex Sans", sans-serif;
+	font-smoothing: antialiased;
+
+	background-color: var(--shade);
+	color: black;
+
+	font-size: 16px;
+	line-height: 24px;
+}
+
+body.dark {
+	background-color: var(--shade-dark);
+	color: white;
+}
+
+@media (max-width: 640px) {
+	body {
+		font-size: 18px;
+		line-height: 28px;
+	}
+}
+
+a,
+.link {
+	color: var(--link);
+	text-decoration: underline;
+}
+
+a:active,
+.link:active {
+	color: red;
+}
+
+body.dark a,
+body.dark .link {
+	color: var(--link-dark);
+}
+
+#container {
+	width: 100%;
+	margin: 0 auto;
+	max-width: 65ch;
+	min-height: 100dvh;
+
+	background-color: var(--background);
+}
+
+body.dark #container {
+	background-color: var(--background-dark);
+}
+
+nav {
+	padding: 16px 12px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--shade);
+}
+
+body.dark nav {
+	border-color: var(--shade-dark);
+}
+
+#content {
+	padding: 16px 12px;
+}
+
+#content p {
+}
+
+#content ul {
 }
