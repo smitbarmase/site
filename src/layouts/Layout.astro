@@ -6,9 +6,9 @@ interface Props {
 	title?: string;
 }
 
-const { title: partialTitle = "not found" } = Astro.props;
+const { title } = Astro.props;
 
-const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barmase's website`;
+const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 ---
 
 <!doctype html>
@@ -21,12 +21,12 @@ const title = `${partialTitle === "index" ? "" : `${partialTitle} - `}smit barma
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/plex-sans.woff2"
+			href="/fonts/plex-sans-text.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
-		<title>{title}</title>
+		<title>{formattedTitle}</title>
 		<script src="../scripts/theme.ts"></script>
 	</head>
 	<body>
