@@ -1,5 +1,4 @@
 ---
-import "../reset.css";
 import "../index.css";
 
 interface Props {
@@ -13,7 +12,7 @@ const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 
 <!doctype html>
 <html lang="en">
-	<head>
+	<head class="overscroll-none">
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
@@ -29,13 +28,17 @@ const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 		<title>{formattedTitle}</title>
 		<script src="../scripts/theme.ts"></script>
 	</head>
-	<body>
-		<div id="container">
-			<nav>
+	<body
+		class="antialiased text-lg sm:text-base flex justify-center min-h-dvh bg-shade text-black dark:bg-shade-dark dark:text-white"
+	>
+		<div class="flex-1 max-w-2xl bg-background dark:bg-background-dark">
+			<nav
+				class="p-4 flex justify-between border-b-4 border-shade dark:border-shade-dark bg-background dark:bg-background-dark"
+			>
 				<a href="/">home</a>
 				<button id="toggle-theme" class="link"></button>
 			</nav>
-			<div id="content">
+			<div class="prose p-4">
 				<slot />
 			</div>
 		</div>
