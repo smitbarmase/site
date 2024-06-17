@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from "tailwindcss";
+
 export default {
 	darkMode: "class",
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -18,5 +19,20 @@ export default {
 			},
 		},
 	},
+	corePlugins: {
+		filter: false,
+		backdropFilter: false,
+		ringWidth: false,
+		ringColor: false,
+		ringOffsetWidth: false,
+		ringOffsetColor: false,
+		boxShadow: false,
+		transform: false,
+		touchAction: false,
+		scrollSnapType: false,
+		borderOpacity: false,
+		textOpacity: false,
+		fontVariantNumeric: false,
+	},
 	plugins: [],
-};
+} satisfies Config;
