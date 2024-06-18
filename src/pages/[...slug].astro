@@ -23,6 +23,6 @@ const slug = post.slug.split("/").pop() ?? "";
 const { Content } = await post.render();
 ---
 
-<Layout title={slug.split("-").join(" ")}>
+<Layout slug={post.slug}>
 	<Content />
 </Layout>

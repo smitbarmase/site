@@ -3,10 +3,12 @@ import "../reset.css";
 import "../index.css";
 
 interface Props {
-	title?: string;
+	slug?: string;
 }
 
-const { title } = Astro.props;
+const { slug } = Astro.props;
+
+const title = slug ? slug.split("/").pop() : "";
 
 const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 ---
@@ -21,23 +23,25 @@ const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 		<meta name="generator" content={Astro.generator} />
 		<link
 			rel="preload"
-			href="/fonts/plex-sans-text.woff2"
+			href="/fonts/noto-sans.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<title>{formattedTitle}</title>
-		<script src="../scripts/theme.ts"></script>
 	</head>
 	<body>
-		<div id="container">
-			<nav>
-				<a href="/">home</a>
-				<button id="toggle-theme" class="link"></button>
-			</nav>
-			<div id="content">
-				<slot />
+		<nav>
+			<a href="/">home</a>
+			<div>
+				<a
+					href="https://x.com/smitbarmase"
+					target="_blank"
+					style="margin-right: 4px;">x</a
+				>
+				<a href="https://github.com/smitbarmase" target="_blank">github</a>
 			</div>
-		</div>
+		</nav>
+		<slot />
 	</body>
 </html>

@@ -1,49 +1,43 @@
 @font-face {
-	font-family: "IBM Plex Sans";
+	font-family: "Noto Sans";
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url("/fonts/plex-sans-text.woff2") format("woff2");
+	src: url("/fonts/noto-sans.woff2") format("woff2");
 }
 
 :root {
-	--background: #d8d2cb;
-	--background-dark: #222222;
-
-	--shade: #c8c2ba;
-	--shade-dark: #141414;
-
-	--link: #002080;
-	--link-dark: #2f9bee;
+	--background: #202027;
+	--text: #e1e1e1;
+	--link: #2f9bee;
+	--red: #ff0000;
 }
 
 html {
-	font-family: "IBM Plex Sans", sans-serif;
-	font-smoothing: antialiased;
+	font-family: "Noto Sans", sans-serif;
 	overscroll-behavior: none;
 }
 
 body {
-	display: flex;
-	justify-content: center;
-	min-height: 100dvh;
+	margin: 0 auto;
+	max-width: 70ch;
+	padding: 16px 20px;
 
-	background-color: var(--shade);
-	color: black;
+	background-color: var(--background);
+	color: var(--text);
 
 	font-size: 16px;
 	line-height: 24px;
-}
-
-body.dark {
-	background-color: var(--shade-dark);
-	color: white;
 }
 
 @media (max-width: 640px) {
 	body {
 		font-size: 18px;
 		line-height: 28px;
+	}
+	h1 {
+		font-size: 24px;
+		line-height: 36px;
 	}
 }
 
@@ -55,52 +49,24 @@ a,
 
 a:active,
 .link:active {
-	color: red;
-}
-
-body.dark a,
-body.dark .link {
-	color: var(--link-dark);
-}
-
-#container {
-	flex: 1;
-	max-width: 70ch;
-
-	background-color: var(--background);
-}
-
-body.dark #container {
-	background-color: var(--background-dark);
+	color: var(--red);
 }
 
 nav {
-	padding: 16px 20px;
 	display: flex;
 	justify-content: space-between;
-
-	background-color: var(--background);
-	border-bottom: 4px solid var(--shade);
+	margin-bottom: 24px;
 }
 
-body.dark nav {
-	background-color: var(--background-dark);
-	border-color: var(--shade-dark);
-}
-
-#content {
-	padding: 16px 20px;
-}
-
-#content h1 {
-	font-size: 24px;
+h1 {
+	font-size: 20px;
 	line-height: 32px;
 	margin-bottom: 12px;
 }
 
-#content p {
+p {
 	margin-bottom: 12px;
 }
 
-#content ul {
+ul {
 }
