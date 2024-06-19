@@ -1,55 +1,40 @@
 @font-face {
-	font-family: "Noto Sans";
+	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url("/fonts/noto-sans.woff2") format("woff2");
+	src: url("/fonts/inter-regular.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("/fonts/inter-semi-bold.woff2") format("woff2");
 }
 
 :root {
-	--background: #202027;
-	--text: #e1e1e1;
-	--link: #2f9bee;
-	--red: #ff0000;
-}
-
-html {
-	font-family: "Noto Sans", sans-serif;
-	overscroll-behavior: none;
+	font-family: Inter, sans-serif;
 }
 
 body {
-	margin: 0 auto;
-	max-width: 70ch;
-	padding: 16px 20px;
-
-	background-color: var(--background);
-	color: var(--text);
+	margin: 50px auto;
+	max-width: 650px;
+	padding: 0px 16px;
 
 	font-size: 16px;
-	line-height: 24px;
-}
-
-@media (max-width: 640px) {
-	body {
-		font-size: 18px;
-		line-height: 28px;
-	}
-	h1 {
-		font-size: 24px;
-		line-height: 36px;
-	}
+	line-height: 1.4;
 }
 
 a,
 .link {
-	color: var(--link);
+	color: blue;
 	text-decoration: underline;
 }
 
 a:active,
 .link:active {
-	color: var(--red);
+	color: red;
 }
 
 nav {
@@ -59,14 +44,17 @@ nav {
 }
 
 h1 {
-	font-size: 20px;
-	line-height: 32px;
-	margin-bottom: 12px;
+	font-size: 24px;
+	line-height: 2.1;
+
+	font-weight: 600;
+	margin: 20px 0;
 }
 
 p {
-	margin-bottom: 12px;
+	margin: 16px 0;
 }
 
 ul {
+	margin: 16px 0;
 }

@@ -1,5 +1,4 @@
 ---
-import "../reset.css";
 import "../index.css";
 
 interface Props {
@@ -19,16 +18,21 @@ const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<title>{formattedTitle}</title>
 		<link
 			rel="preload"
-			href="/fonts/noto-sans.woff2"
+			href="/fonts/inter-regular.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
-		<title>{formattedTitle}</title>
+		<link
+			rel="preload"
+			href="/fonts/inter-semi-bold.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 	</head>
 	<body>
 		<nav>

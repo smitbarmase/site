@@ -31,3 +31,5 @@ pnpm-debug.log*
 .stignore
 .syncthing.*
 .obsidian/
+
+src/content/notes
