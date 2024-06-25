@@ -2,50 +2,46 @@
 import "../index.css";
 
 interface Props {
-	slug?: string;
+  slug: string;
 }
 
 const { slug } = Astro.props;
 
-const title = slug ? slug.split("/").pop() : "";
+let prefix = "";
 
-const formattedTitle = `${title ? `${title} - ` : ``}smit barmase's website`;
+if (slug === "404") {
+  prefix = "not found - ";
+} else if (slug !== "index") {
+  prefix = `${slug} - `;
+}
+
+const title = prefix + "smit";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{formattedTitle}</title>
-		<link
-			rel="preload"
-			href="/fonts/inter-regular.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>
-		<link
-			rel="preload"
-			href="/fonts/inter-semi-bold.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>
-	</head>
-	<body>
-		<nav>
-			<a href="/">home</a>
-			<div>
-				<a
-					href="https://x.com/smitbarmase"
-					target="_blank"
-					style="margin-right: 4px;">x</a
-				>
-				<a href="https://github.com/smitbarmase" target="_blank">github</a>
-			</div>
-		</nav>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>
+      {
+        slug == "index" ? (
+          <>
+            <a href="https://x.com/smitbarmase" target="_blank">
+              x
+            </a>
+            <a href="https://github.com/smitbarmase" target="_blank">
+              github
+            </a>
+          </>
+        ) : (
+          <a href="/">back</a>
+        )
+      }
+    </nav>
+    <slot />
+  </body>
 </html>

@@ -1,11 +1,13 @@
 ---
+import { getEntry } from "astro:content";
+
 import Layout from "../layouts/Layout.astro";
+
+const post = await getEntry("other", "404");
+
+const { Content } = await post.render();
 ---
 
-<Layout>
-	<h1>Not Found</h1>
-	<p>
-		If you think this is a mistake, please mail me at heysmitbarmase at gmail
-		dot com.
-	</p>
+<Layout slug={post.slug}>
+  <Content />
 </Layout>

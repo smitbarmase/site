@@ -1,7 +1,13 @@
 ---
+import { getEntry } from "astro:content";
+
 import Layout from "../layouts/Layout.astro";
+
+const post = await getEntry("other", "index");
+
+const { Content } = await post.render();
 ---
 
-<Layout>
-	<p>Hello.</p>
+<Layout slug={post.slug}>
+  <Content />
 </Layout>
