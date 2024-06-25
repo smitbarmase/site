@@ -1,5 +1,5 @@
-hey yo! this is smit. i'm a software engineer.
+heyo, i'm smit. i work as a software engineer.
 
-i'm building opinionated compositor and tiling window manager for wayland in
-rust. why? this site contains my notes. it's pretty much a brain dump. i'm not a
-writer.
+in my part-time, i'm building a compositor and tiling window manager for wayland. why?
+
+this site contains my notes. it's pretty much a brain dump.
