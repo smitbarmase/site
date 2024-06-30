@@ -2,7 +2,7 @@
 import "../index.css";
 
 interface Props {
-  slug: string;
+	slug: string;
 }
 
 const { slug } = Astro.props;
@@ -10,9 +10,9 @@ const { slug } = Astro.props;
 let prefix = "";
 
 if (slug === "404") {
-  prefix = "not found - ";
+	prefix = "not found - ";
 } else if (slug !== "index") {
-  prefix = `${slug} - `;
+	prefix = `${slug} - `;
 }
 
 const title = prefix + "smit";
@@ -20,28 +20,28 @@ const title = prefix + "smit";
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <nav>
-      {
-        slug == "index" ? (
-          <>
-            <a href="https://x.com/smitbarmase" target="_blank">
-              x
-            </a>
-            <a href="https://github.com/smitbarmase" target="_blank">
-              github
-            </a>
-          </>
-        ) : (
-          <a href="/">back</a>
-        )
-      }
-    </nav>
-    <slot />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<nav>
+			{
+				slug == "index" ? (
+					<>
+						<a href="https://x.com/smitbarmase" target="_blank">
+							x
+						</a>
+						<a href="https://github.com/smitbarmase" target="_blank">
+							github
+						</a>
+					</>
+				) : (
+					<a href="/">back</a>
+				)
+			}
+		</nav>
+		<slot />
+	</body>
 </html>
