@@ -1,3 +1,5 @@
-i'm tims. you may also know me in person as smit. i'm a software engineer.
+# tims
 
-this site contains my notes. it's pretty much a brain dump.
+you may also know me by my real name smit. i'm a software engineer. this site contains my notes. it's pretty much a brain dump.
+
+- [how to use computer fast?](/use-computer-fast)
