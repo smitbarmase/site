@@ -30,3 +30,11 @@ h2 {
 	font-size: 20px;
 	line-height: 28px;
 }
+
+ul {
+	padding-left: 24px;
+}
+
+li {
+	margin-bottom: 4px;
+}
