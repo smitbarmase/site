@@ -4,8 +4,7 @@ use shortcuts. i mean everywhere.
 
 ## 1. for window management:
 
-i was [i3wm](https://i3wm.org/) user for 3 year on my personal laptop.
-now that i have to use macbook for work, i use [aerospace](https://github.com/nikitabobko/AeroSpace) to use similar key bindings.
+this needs to be upated as per my i3 config. these are old macos shortcuts.
 
 - `opt + h,j,k,l` to focus windows
 - `opt + shift + h,j,k,l` to move windows
@@ -30,3 +29,4 @@ terminal isn't the fastest way to do git operations as you do these operations d
 - `cmd + g space` to commit staged changes
 - `cmd + g c` to checkout branch
 - `cmd + g m` to merge branch
+- `cmd + g d` to discard changes
