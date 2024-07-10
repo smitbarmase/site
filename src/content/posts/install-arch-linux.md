@@ -151,25 +151,16 @@ sudo pacman -S xorg-server xorg-xinit xorg-apps xclip
 
 ## apps
 
-sudo pacman -S kitty dmenu firefox vlc
+sudo pacman -S kitty dmenu firefox vlc picom gnome-keyring polybar
 
-## setup fish
-
-- `sudo pacman -S fish`
-
-- `chsh -l` to list available shells.
-
-- `chsh -s /path/to/fish` to set fish as default shell.
-
-- delete bash related files. `rm ~/.bashrc ~/.bash_profile ~/.bash_logout ~/.bash_history`
-
-- put `alias vim="nvim"` in `~/.config/fish/config.fish`
 
 ## window manager
 
 sudo pacman -S i3
 
 - add `exec i3` to `~/.xinitrc`. this will start i3 when you run `startx`.
+
+- use i3 config from my github dotfiles
 
 ## xorg config
 
@@ -186,9 +177,17 @@ Section "InputClass"
 EndSection
 ```
 
-## proprietary apps
+## setup fish
 
-yay -S visual-studio-code-bin spotify slack-desktop
+- `sudo pacman -S fish`
+
+- `chsh -l` to list available shells.
+
+- `chsh -s /path/to/fish` to set fish as default shell.
+
+- delete bash related files. `rm ~/.bashrc ~/.bash_profile ~/.bash_logout ~/.bash_history`
+
+- put `alias vim="nvim"` in `~/.config/fish/config.fish`
 
 ## node
 
@@ -198,7 +197,11 @@ fisher install jorgebucaran/nvm.fish
 
 nvm install lts
 
-install other utils like `pnpm` and `bun` from their respective repos.
+
+## proprietary apps
+
+yay -S visual-studio-code-bin spotify slack-desktop
+
 
 # DUMP START
 
