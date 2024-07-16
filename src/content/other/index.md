@@ -5,4 +5,4 @@ you may also know me by my real name smit. i'm a software engineer. this site co
 ## how
 
 - [how to use computer fast?](/use-computer-fast)
-- [how to install arch linux?](/install-arch-linux)
+- [how to automate post linux install?](/automate-post-linux-install)
