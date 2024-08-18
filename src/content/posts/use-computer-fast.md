@@ -1,4 +1,7 @@
-# how to use computer fast?
+---
+title: how to use computer fast?
+date: 2024-08-01
+---
 
 use shortcuts. i mean everywhere.
 

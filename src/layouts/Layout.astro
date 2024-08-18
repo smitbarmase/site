@@ -2,47 +2,44 @@
 import "../index.css";
 
 interface Props {
-	slug: string;
+  h1: string;
 }
 
-const { slug } = Astro.props;
+const { h1 } = Astro.props;
 
-let prefix = "";
-
-if (slug === "404") {
-	prefix = "not found - ";
-} else if (slug !== "index") {
-	prefix = `${slug} - `;
-}
-
-const title = prefix + "tims";
+const isIndex = h1 === "tims";
+const title = (!isIndex ? `${h1} - ` : "") + "0xtimsb";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{title}</title>
-		<link rel="icon" type="image/x-icon" href="/favicon.png" />
-	</head>
-	<body>
-		<nav>
-			{
-				slug == "index" ? (
-					<>
-						<a href="https://x.com/0xtimsb" target="_blank">
-							x
-						</a>
-						<a href="https://github.com/0xtimsb" target="_blank">
-							github
-						</a>
-					</>
-				) : (
-					<a href="/">back</a>
-				)
-			}
-		</nav>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body>
+    <nav>
+      {
+        isIndex ? (
+          <>
+            <a href="https://x.com/0xtimsb" target="_blank">
+              x
+            </a>
+            <a href="https://github.com/0xtimsb" target="_blank">
+              github
+            </a>
+          </>
+        ) : (
+          <a href="/">back</a>
+        )
+      }
+    </nav>
+    <h1>{h1}</h1>
+    <slot />
+  </body>
 </html>

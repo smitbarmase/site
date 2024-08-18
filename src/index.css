@@ -1,65 +1,69 @@
 :root {
-	font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 body {
-	font-size: 16px;
-	line-height: 22px;
+  font-size: 16px;
+  line-height: 22px;
 
-	max-width: 580px;
-	margin: 0 auto;
-	padding: 0 16px;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 nav {
-	display: flex;
-	justify-content: end;
-	margin: 24px 0;
+  display: flex;
+  justify-content: end;
+  margin: 24px 0;
 }
 
 @media (max-width: 580px) {
-	nav {
-		margin: 16px 0;
-	}
+  nav {
+    margin: 16px 0;
+  }
 }
 
 nav > a,
 span {
-	margin-left: 16px;
+  margin-left: 16px;
 }
 
 h1 {
-	font-size: 20px;
-	line-height: 28px;
+  font-size: 20px;
+  line-height: 28px;
 }
 
 h2 {
-	font-size: 16px;
-	line-height: 22px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 h3 {
-	font-size: 16px;
-	line-height: 22px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 blockquote {
-	color: #4e4e4e;
-	padding: 8px 12px;
-	border-left: 4px solid #eee;
+  color: #4e4e4e;
+  padding: 8px 12px;
+  border-left: 4px solid #eee;
 }
 
 blockquote p {
-	margin: 0;
-	font-size: 14px;
-	line-height: 20px;
-	font-style: italic;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-style: italic;
 }
 
-code {
-	background-color: #eee;
-	padding: 1px 4px;
-	border-radius: 4px;
-	color: #ff0084;
-	font-size: 14px;
+:not(pre) > code {
+  background-color: #eee;
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: #ff0084;
+  font-size: 14px;
+}
+
+pre {
+  border-radius: 4px;
 }

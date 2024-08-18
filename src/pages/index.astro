@@ -1,13 +1,29 @@
 ---
-import { getEntry } from "astro:content";
-
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-const post = await getEntry("other", "index");
-
-const { Content } = await post.render();
+const posts = await getCollection("posts");
+const sortedPosts = posts.sort((a, b) => {
+  const aDate = new Date(a.data.date);
+  const bDate = new Date(b.data.date);
+  return aDate.getTime() - bDate.getTime();
+});
 ---
 
-<Layout slug={post.slug}>
-  <Content />
+<Layout h1="tims">
+  <p>
+    hey! i'm a software engineer building web and ai systems. i'm intrested in
+    systems engineering and currently learning zig.
+  </p>
+  <p>this site contains my notes. it's pretty much a brain dump.</p>
+  <h2>things i wrote</h2>
+  <ul>
+    {
+      sortedPosts.map((post) => (
+        <li>
+          <a href={`/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
