@@ -1,0 +1,5 @@
+- passport
+- react evetn based side effect
+- built react from stratch
+- built sevelte from scratch
+- svelete have event based side effect
