@@ -6,19 +6,15 @@ const posts = await getCollection("posts");
 const sortedPosts = posts.sort((a, b) => {
   const aDate = new Date(a.data.date);
   const bDate = new Date(b.data.date);
-  return aDate.getTime() - bDate.getTime();
+  return bDate.getTime() - aDate.getTime();
 });
 ---
 
 <Layout h1="tims">
   <p>
-    hey, i'm swe. i like tinkering with web libraries, bundlers, and anything
-    low-level. this site contains my notes. it's pretty much a brain dump.
+    hey, i'm swe based in blr. i'm into web, dev tools and anything low-level.
   </p>
-  <p>
-    you can reach out to me
-    <a href="mailto:0xtimsb@gmail.com">here</a>.
-  </p>
+  <p>this site contains my notes. it's pretty much brain dump.</p>
   <h2>things i wrote</h2>
   <ul>
     {
