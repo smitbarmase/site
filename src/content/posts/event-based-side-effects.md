@@ -1,5 +1,5 @@
 ---
-title: event-based side effects
+title: lack of event-based side effects in react
 date: 2024-08-24
 ---
 
