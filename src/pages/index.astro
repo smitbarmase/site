@@ -8,6 +8,19 @@ const sortedPosts = posts.sort((a, b) => {
   const bDate = new Date(b.data.date);
   return bDate.getTime() - aDate.getTime();
 });
+
+interface GroupedPosts {
+  [category: string]: typeof sortedPosts;
+}
+
+const groupedPosts = sortedPosts.reduce<GroupedPosts>((acc, post) => {
+  const category = post.data.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(post);
+  return acc;
+}, {});
 ---
 
 <Layout h1="tims">
@@ -15,13 +28,18 @@ const sortedPosts = posts.sort((a, b) => {
     hey, i'm swe based in blr. i'm into web, dev tools and anything low-level.
   </p>
   <h2>things i wrote</h2>
-  <ul>
-    {
-      sortedPosts.map((post) => (
-        <li>
-          <a href={`/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    Object.entries(groupedPosts).map(([category, categoryPosts]) => (
+      <div>
+        <h3>{category}</h3>
+        <ul>
+          {categoryPosts.map((post) => (
+            <li>
+              <a href={`/${post.slug}`}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
 </Layout>

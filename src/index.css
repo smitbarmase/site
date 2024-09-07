@@ -2,6 +2,13 @@
   font-family: sans-serif;
   font-size: 16px;
   line-height: 22px;
+  --background: #01242e;
+  --heading-color: #eee;
+  --text-color: #ddd;
+  --link-color: #8cc2dd;
+  --visited-link-color: #8cc2dd;
+  --code-background-color: #063542;
+  --code-color: #489af1;
 }
 
 body {
@@ -10,6 +17,8 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 48px;
+  background-color: var(--background);
+  color: var(--text-color);
 }
 
 nav {
@@ -30,7 +39,15 @@ nav > span {
 }
 
 li {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.post-footer {
+  text-align: right;
 }
 
 h1 {
@@ -39,23 +56,42 @@ h1 {
 }
 
 h2 {
-  margin-top: 24px;
+  margin-top: 28px;
   font-size: 18px;
   line-height: 24px;
 }
 
+h3 {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
+}
+
 :not(pre) > code {
-  background-color: #eee;
-  color: #ff0084;
-  padding: 1px 4px;
-  border-radius: 4px;
+  background-color: var(--code-background-color);
+  color: var(--code-color);
   font-size: 14px;
   line-height: 20px;
+  border-radius: 4px;
+  padding: 1px 4px;
 }
 
 pre {
+  background-color: var(--code-background-color);
+  color: var(--code-color);
   font-size: 14px;
   line-height: 20px;
   border-radius: 6px;
   padding: 20px;
+}
+
+a,
+a:visited {
+  color: var(--link-color);
 }

@@ -23,4 +23,15 @@ const { Content } = await post.render();
 
 <Layout h1={post.data.title}>
   <Content />
+  <p class="post-footer">
+    posted on {
+      new Date(post.data.date)
+        .toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+        .toLowerCase()
+    }
+  </p>
 </Layout>

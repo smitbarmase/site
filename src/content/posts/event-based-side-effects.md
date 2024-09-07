@@ -1,6 +1,7 @@
 ---
 title: lack of event-based side effects in react
 date: 2024-08-24
+category: tech
 ---
 
 let's say we're building a real-time todo app. users can create todos, delete todos, and do a lot of other stuff. these events need to be sent to the server and then broadcast to all connected clients. all connected clients will then update their todos.
