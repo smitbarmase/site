@@ -6,9 +6,9 @@
   --heading-color: #eee;
   --text-color: #ddd;
   --link-color: #8cc2dd;
-  --visited-link-color: #8cc2dd;
-  --code-background-color: #063542;
-  --code-color: #489af1;
+  --active-link-color: #f43a88;
+  --code-background-color: #033340;
+  --code-color: #f43a88;
 }
 
 body {
@@ -46,10 +46,6 @@ ul {
   padding-left: 20px;
 }
 
-.post-footer {
-  text-align: right;
-}
-
 h1 {
   font-size: 20px;
   line-height: 28px;
@@ -83,8 +79,6 @@ h3 {
 }
 
 pre {
-  background-color: var(--code-background-color);
-  color: var(--code-color);
   font-size: 14px;
   line-height: 20px;
   border-radius: 6px;
@@ -94,4 +88,8 @@ pre {
 a,
 a:visited {
   color: var(--link-color);
+}
+
+a:active {
+  color: var(--active-link-color);
 }

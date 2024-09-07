@@ -23,7 +23,12 @@ const { Content } = await post.render();
 
 <Layout h1={post.data.title}>
   <Content />
-  <p class="post-footer">
+  <p style="font-style: italic;">
+    you should follow me on x <a href="https://x.com/0xtimsb" target="_blank"
+      >here</a
+    >.
+  </p>
+  <p style="text-align: right;">
     posted on {
       new Date(post.data.date)
         .toLocaleDateString("en-US", {
