@@ -27,11 +27,10 @@ const groupedPosts = sortedPosts.reduce<GroupedPosts>((acc, post) => {
   <p>
     hey, i'm swe based in blr. i'm into web, dev tools and anything low-level.
   </p>
-  <h2>things i wrote</h2>
   {
     Object.entries(groupedPosts).map(([category, categoryPosts]) => (
-      <div>
-        <h3>{category}</h3>
+      <>
+        <h2>{category}</h2>
         <ul>
           {categoryPosts.map((post) => (
             <li>
@@ -39,7 +38,7 @@ const groupedPosts = sortedPosts.reduce<GroupedPosts>((acc, post) => {
             </li>
           ))}
         </ul>
-      </div>
+      </>
     ))
   }
 </Layout>
