@@ -71,3 +71,5 @@ the site automatically generates breadcrumb navigation based on your content str
 ```bash
 bun run build
 ```
+
+see [build.md](build.md) for more details on deploying to cloudflare pages.
