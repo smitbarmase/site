@@ -4,7 +4,13 @@ import { readFile } from "fs/promises";
 import { createFilenameWithExtension } from "../helper";
 import type { Section, Book, PostBookMap } from "../types";
 
-import { PAGE_COUNT_MAP_PATH, SECTIONS_PATH } from "../constants";
+import {
+  COVERS_DIR,
+  PAGE_COUNT_MAP_PATH,
+  SECTIONS_PATH,
+  SITE_GITHUB_URL,
+  SITE_URL,
+} from "../constants";
 
 const sections: Section[] = JSON.parse(await readFile(SECTIONS_PATH, "utf-8"));
 const pageCountMap: PostBookMap = JSON.parse(
@@ -39,7 +45,7 @@ const formatPages = (pages: number): string => {
               <div class="flex items-center">
                 <img
                   loading="lazy"
-                  src={`/books/${createFilenameWithExtension(book.book_title)}`}
+                  src={`${SITE_URL}/${COVERS_DIR}/${createFilenameWithExtension(book.book_title)}`}
                   alt={book.book_title}
                   class="h-40 object-scale-down"
                 />

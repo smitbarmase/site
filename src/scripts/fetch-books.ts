@@ -10,25 +10,19 @@ import {
   optimizeAndSaveImage,
 } from "../helper";
 
-import {
-  BOOK_COVER_API,
-  COVERS_DIR,
-  GOOGLE_BOOKS_API,
-  PAGE_COUNT_MAP_PATH,
-  SECTIONS_PATH,
-} from "../constants";
+import { COVERS_DIR, PAGE_COUNT_MAP_PATH, SECTIONS_PATH } from "../constants";
 
 class GoogleBooksService {
   async getPageCount(book: Book): Promise<number | null> {
     try {
       const query = `${encodeURIComponent(book.book_title)} ${encodeURIComponent(book.author_name)}`;
-      const { items } = await fetch(`${GOOGLE_BOOKS_API}?q=${query}`).then(
-        (res) => {
-          if (!res.ok)
-            throw new APIError(`Failed to fetch page count`, res.status);
-          return res.json();
-        },
-      );
+      const { items } = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${query}`,
+      ).then((res) => {
+        if (!res.ok)
+          throw new APIError(`Failed to fetch page count`, res.status);
+        return res.json();
+      });
 
       return items?.[0]?.volumeInfo?.pageCount ?? null;
     } catch (error) {
@@ -40,16 +34,19 @@ class GoogleBooksService {
 
 class BookCoverService {
   async fetchCoverUrl(book: Book): Promise<string | null> {
-    const params = new URLSearchParams(
-      book as unknown as Record<string, string>,
-    );
     try {
-      const { url } = await fetch(`${BOOK_COVER_API}?${params}`).then((res) => {
-        if (!res.ok)
-          throw new APIError(`Failed to fetch cover URL`, res.status);
-        return res.json();
-      });
-      return url;
+      const searchQuery = `${encodeURIComponent(book.book_title)} ${encodeURIComponent(book.author_name)}`;
+      const searchResponse = await fetch(
+        `https://openlibrary.org/search.json?q=${searchQuery}`,
+      );
+      const searchData = await searchResponse.json();
+
+      if (!searchResponse.ok || !searchData.docs?.[0]?.isbn?.[0]) {
+        throw new APIError(`No ISBN found for book`, searchResponse.status);
+      }
+
+      const isbn = searchData.docs[0].isbn[0];
+      return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
     } catch (error) {
       Logger.error(`Error fetching cover for ${book.book_title}:`, error);
       return null;

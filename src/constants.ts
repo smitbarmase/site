@@ -5,10 +5,6 @@ export const SITE_URL = "https://0xtimsb.com";
 export const SITE_GITHUB_URL = "https://github.com/0xtimsb/site";
 export const SITE_AUTHOR = "Smit Barmase"; // yes, that's my real name
 
-// apis
-export const GOOGLE_BOOKS_API = "https://www.googleapis.com/books/v1/volumes";
-export const BOOK_COVER_API = "https://bookcover.longitood.com/bookcover";
-
 // data
 const DATA_DIR = "src/data";
 
