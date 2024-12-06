@@ -4,13 +4,7 @@ import { readFile } from "fs/promises";
 import { createFilenameWithExtension } from "../helper";
 import type { Section, Book, PostBookMap } from "../types";
 
-import {
-  COVERS_DIR,
-  PAGE_COUNT_MAP_PATH,
-  SECTIONS_PATH,
-  SITE_GITHUB_URL,
-  SITE_URL,
-} from "../constants";
+import { PAGE_COUNT_MAP_PATH, SECTIONS_PATH } from "../constants";
 
 const sections: Section[] = JSON.parse(await readFile(SECTIONS_PATH, "utf-8"));
 const pageCountMap: PostBookMap = JSON.parse(

@@ -26,7 +26,7 @@ const navItems: NavItem[] = [
   ...post.id
     .split("/")
     .slice(0, -1)
-    .map((token, index, array) => {
+    .map((_, index, array) => {
       const tokenPath = array.slice(0, index + 1).join("/"); // path for this specific token
       const tokenPost = allPosts.find((p) => p.id === tokenPath);
 
