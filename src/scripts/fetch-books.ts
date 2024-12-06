@@ -35,18 +35,17 @@ class GoogleBooksService {
 class BookCoverService {
   async fetchCoverUrl(book: Book): Promise<string | null> {
     try {
-      const searchQuery = `${encodeURIComponent(book.book_title)} ${encodeURIComponent(book.author_name)}`;
-      const searchResponse = await fetch(
-        `https://openlibrary.org/search.json?q=${searchQuery}`,
+      const query = `book_title=${encodeURIComponent(book.book_title)}&author_name=${encodeURIComponent(book.author_name)}`;
+      const response = await fetch(
+        `https://bookcover.longitood.com/bookcover?${query}`,
       );
-      const searchData = await searchResponse.json();
+      const data = await response.json();
 
-      if (!searchResponse.ok || !searchData.docs?.[0]?.isbn?.[0]) {
-        throw new APIError(`No ISBN found for book`, searchResponse.status);
+      if (!response.ok || !data.url) {
+        throw new APIError(`No cover image found for book`, response.status);
       }
 
-      const isbn = searchData.docs[0].isbn[0];
-      return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+      return data.url;
     } catch (error) {
       Logger.error(`Error fetching cover for ${book.book_title}:`, error);
       return null;
