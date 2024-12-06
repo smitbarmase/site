@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply max-w-3xl mt-6 mb-24 text-black bg-white px-4 mx-auto;
+  }
+  nav {
+    @apply mb-6 flex items-center;
+  }
+  h1 {
+    @apply font-semibold inline;
+  }
+  a {
+    @apply text-blue sm:hover:underline underline-offset-2;
+  }
+  main p,
+  main ul,
+  main ol,
+  main pre {
+    @apply mt-4;
+  }
+  main ol {
+    @apply list-decimal pl-6;
+  }
+  main ul {
+    @apply list-disc pl-6;
+  }
+  main h2 {
+    @apply mt-6 font-semibold;
+  }
+  main ul {
+    @apply list-disc pl-8 mt-4;
+  }
+  main li {
+    @apply mb-1;
+  }
+  main li > code,
+  main p > code {
+    @apply text-xs text-purple bg-gray px-1.5 py-0.5 rounded;
+  }
+  main pre {
+    @apply px-5 py-4 rounded-md text-xs;
+  }
+}
+
+@layer components {
+  .external-link {
+    @apply whitespace-nowrap;
+  }
+
+  .external-link::after {
+    @apply inline-block w-4 h-4 translate-y-0.5 bg-blue;
+    mask-image: url("/icons/external-link.svg");
+    mask-size: cover;
+    content: "";
+  }
+
+  .breadcrumb-item::after {
+    @apply inline-block w-3.5 h-3.5 translate-y-0.5 bg-black;
+    content: "";
+    mask-image: url("/icons/chevron-right.svg");
+    mask-size: cover;
+  }
+}
+
+.astro-code,
+.astro-code span {
+  @apply !bg-gray;
+}

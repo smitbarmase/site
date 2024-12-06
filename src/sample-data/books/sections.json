@@ -1,0 +1,14 @@
+{
+  "sections": [
+    {
+      "title": "Sample Section",
+      "description": "This is an example section",
+      "books": [
+        {
+          "book_title": "Example Book",
+          "author_name": "John Doe"
+        }
+      ]
+    }
+  ]
+}

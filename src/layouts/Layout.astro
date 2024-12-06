@@ -1,0 +1,78 @@
+---
+import "../index.css";
+
+import ClientRouter from "astro/components/ClientRouter.astro";
+
+import type { NavItem } from "../types";
+import { SITE_AUTHOR } from "../constants";
+
+interface Props {
+  navItems: NavItem[];
+}
+
+const { navItems } = Astro.props;
+
+if (navItems.length === 0) {
+  throw new Error("Navigation items array must contain at least one item");
+}
+
+const restNavItems = navItems.slice(0, -1);
+const h1 = navItems[navItems.length - 1];
+
+if (restNavItems.some((item) => !item.href)) {
+  throw new Error(
+    "All navigation items except the last one must include an href property",
+  );
+}
+
+// type narrowing
+const typedRestNavItems = restNavItems as (NavItem & { href: string })[];
+
+if (h1.href) {
+  throw new Error("The last navigation item must not include an href property");
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content={SITE_AUTHOR} />
+    <title>{navItems[navItems.length - 1].label}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link
+      rel="preload"
+      href="/icons/chevron-right.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link
+      rel="preload"
+      href="/icons/external-link.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <ClientRouter />
+  </head>
+  <body>
+    <nav>
+      {
+        typedRestNavItems.length > 0 ? (
+          <ul class="inline-flex mr-1">
+            {typedRestNavItems.map((navItem) => (
+              <li class="breadcrumb-item">
+                <a href={navItem.href}>{navItem.label}</a>
+              </li>
+            ))}
+          </ul>
+        ) : null
+      }
+      <h1>{h1.label}</h1>
+    </nav>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
