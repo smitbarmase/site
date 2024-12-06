@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "fetch-books": "bun run src/scripts/fetch-books.ts",
-    "build": "astro check && astro build"
+    "copy-images": "cp -r src/data/images public/",
+    "build": "bun run copy-images && astro check && astro build"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",

@@ -7,10 +7,10 @@ export const SITE_AUTHOR = "Smit Barmase"; // yes, that's my real name
 
 // data
 const DATA_DIR = "src/data";
+export const COVERS_DIR = `${DATA_DIR}/images/covers`;
 
 // books
 const BOOKS_DATA_DIR = `${DATA_DIR}/books`;
-export const COVERS_DIR = `${BOOKS_DATA_DIR}/covers`;
 export const SECTIONS_PATH = `${BOOKS_DATA_DIR}/sections.json`;
 export const PAGE_COUNT_MAP_PATH = `${BOOKS_DATA_DIR}/page-count.json`;
 
