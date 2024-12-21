@@ -49,34 +49,47 @@ const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
   </head>
   <body class="max-w-3xl mb-24 px-4 sm:px-0 mx-auto font-geist">
     {
-      isIndex ? (
+      (
         <nav class="flex justify-between my-12">
           <div class="flex space-x-4">
-            <a href="/" class="text-stone-950 hover:text-stone-950">
-              tims
-            </a>
-            <a href="/#work">work</a>
-            <a href="/#writing">writing</a>
-            <a href="/#misc">misc</a>
+            {isIndex ? (
+              <>
+                <a href="/" class="text-stone-950 hover:text-stone-950">
+                  tims
+                </a>
+                <a href="/#work">work</a>
+                <a href="/#writing">writing</a>
+                <a href="/#misc">misc</a>
+              </>
+            ) : (
+              <>
+                <a href="/">back</a>
+              </>
+            )}
           </div>
           <div class="flex space-x-4">
-            <a href="https://github.com/0xtimsb" class="external-link">
+            <a
+              href="https://github.com/0xtimsb"
+              class="external-link"
+              target="_blank"
+            >
               github
             </a>
-            <a href="https://x.com/0xtimsb" class="external-link">
+            <a
+              href="https://x.com/0xtimsb"
+              class="external-link"
+              target="_blank"
+            >
               x
             </a>
             <a
               href="https://bsky.app/profile/0xtimsb.com"
               class="external-link"
+              target="_blank"
             >
               bluesky
             </a>
           </div>
-        </nav>
-      ) : (
-        <nav class="my-12">
-          <a href="/">back</a>
         </nav>
       )
     }
