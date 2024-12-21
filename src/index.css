@@ -2,24 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/GeistMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/GeistMono-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
 @layer base {
-  body {
-    @apply max-w-3xl mt-6 mb-24 text-black bg-white px-4 mx-auto;
+  nav a {
+    @apply text-stone-400 hover:text-stone-500;
   }
-  nav {
-    @apply mb-6 flex items-center;
+  main a {
+    @apply underline underline-offset-4;
   }
-  h1 {
-    @apply font-semibold inline;
+  main h2 {
+    @apply text-xl font-semibold mt-12;
   }
-  a {
-    @apply text-blue sm:hover:underline underline-offset-2;
+  main h3 {
+    @apply text-stone-600 mt-8;
   }
   main p,
   main ul,
   main ol,
   main pre {
-    @apply mt-4;
+    @apply my-8;
   }
   main ol {
     @apply list-decimal pl-6;
@@ -27,21 +41,15 @@
   main ul {
     @apply list-disc pl-6;
   }
-  main h2 {
-    @apply mt-6 font-semibold;
-  }
-  main ul {
-    @apply list-disc pl-8 mt-4;
-  }
   main li {
     @apply mb-1;
   }
   main li > code,
   main p > code {
-    @apply text-xs text-purple bg-gray px-1.5 py-0.5 rounded;
+    @apply text-xs px-1.5 py-0.5 rounded;
   }
   main pre {
-    @apply px-5 py-4 rounded-md text-xs;
+    @apply px-5 py-4 rounded-md text-sm;
   }
 }
 
@@ -51,21 +59,22 @@
   }
 
   .external-link::after {
-    @apply inline-block w-4 h-4 translate-y-0.5 bg-blue;
+    @apply inline-block w-4 h-4 translate-y-0.5;
     mask-image: url("/icons/external-link.svg");
     mask-size: cover;
     content: "";
   }
 
-  .breadcrumb-item::after {
-    @apply inline-block w-3.5 h-3.5 translate-y-0.5 bg-black;
-    content: "";
-    mask-image: url("/icons/chevron-right.svg");
-    mask-size: cover;
+  nav .external-link::after {
+    @apply -translate-x-1 bg-stone-400 hover:bg-stone-500;
+  }
+
+  main .external-link::after {
+    @apply bg-black;
   }
 }
 
 .astro-code,
 .astro-code span {
-  @apply !bg-gray;
+  @apply !bg-stone-50;
 }

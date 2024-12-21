@@ -3,48 +3,21 @@ import { getCollection, render } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
 import COMPONENTS from "../components";
-import { SITE_TITLE } from "../constants";
-import type { NavItem } from "../types";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
   const filteredPosts = allPosts.map((post) => ({
     params: { slug: post.id === "index" ? "/" : post.id },
-    props: { post, allPosts },
+    props: { post },
   }));
   return filteredPosts;
 }
 
-const { post, allPosts } = Astro.props;
+const { post } = Astro.props;
 
 const { Content } = await render(post);
-
-const navItems: NavItem[] = [
-  // if the post is the root, don't include the site title
-  ...(post.id === "index" ? [] : [{ label: SITE_TITLE, href: "/" }]),
-  // rest of items between the root and the h1
-  ...post.id
-    .split("/")
-    .slice(0, -1)
-    .map((_, index, array) => {
-      const tokenPath = array.slice(0, index + 1).join("/"); // path for this specific token
-      const tokenPost = allPosts.find((p) => p.id === tokenPath);
-
-      if (!tokenPost) {
-        throw new Error(
-          `No post found for ${tokenPath}. It is required to have post for all intermediate paths.`,
-        );
-      }
-      return {
-        label: tokenPost.data.title,
-        href: `/${tokenPath}`,
-      };
-    }),
-  // h1
-  { label: post.data.title },
-];
 ---
 
-<Layout navItems={navItems}>
+<Layout h1={post.data.title}>
   <Content components={COMPONENTS} />
 </Layout>
