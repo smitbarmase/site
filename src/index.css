@@ -32,11 +32,11 @@
     @apply list-disc pl-6;
   }
   main li {
-    @apply mb-1;
+    @apply mb-2;
   }
   main li > code,
   main p > code {
-    @apply px-1.5 py-0.5 bg-stone-50;
+    @apply px-1.5 py-0.5 bg-stone-50 text-stone-700;
   }
   main pre {
     @apply px-5 py-4 text-sm;
@@ -60,7 +60,7 @@
   }
 
   main .external-link::after {
-    @apply bg-black;
+    @apply translate-x-1 bg-black;
   }
 }
 
