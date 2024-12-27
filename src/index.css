@@ -9,13 +9,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/GeistMono-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-
 @layer base {
   nav a {
     @apply text-stone-400 hover:text-stone-500;
@@ -24,10 +17,7 @@
     @apply underline underline-offset-4;
   }
   main h2 {
-    @apply text-xl font-semibold mt-12;
-  }
-  main h3 {
-    @apply text-stone-600 mt-8;
+    @apply text-xl mt-12;
   }
   main p,
   main ul,
@@ -46,10 +36,10 @@
   }
   main li > code,
   main p > code {
-    @apply text-xs px-1.5 py-0.5 rounded;
+    @apply px-1.5 py-0.5 bg-stone-50;
   }
   main pre {
-    @apply px-5 py-4 rounded-md text-sm;
+    @apply px-5 py-4 text-sm;
   }
 }
 
