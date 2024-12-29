@@ -68,3 +68,7 @@
 .astro-code span {
   @apply !bg-stone-50;
 }
+
+::selection {
+  @apply bg-stone-200;
+}
