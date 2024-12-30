@@ -23,13 +23,14 @@
     @apply max-w-3xl;
   }
   main a {
+    color: #0000ff;
     @apply underline underline-offset-4;
   }
   main h1 {
     @apply text-2xl;
   }
   main h2 {
-    @apply text-xl mt-12;
+  @apply text-lg mt-12;
   }
   main p,
   main ul,
