@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/GeistMono-Regular.woff2") format("woff2");
+  font-family: "DejavuSansMono";
+  src: url("/fonts/DejavuSansMono.woff2") format("woff2");
   font-weight: normal;
   font-display: swap;
 }
 
 @layer base {
   body {
-    @apply px-page-mobile md:px-page my-8 font-geist leading-relaxed;
+    @apply px-page-mobile md:px-page my-8 font-dejavu leading-relaxed;
   }
   nav {
     @apply flex justify-between my-8;
@@ -30,7 +30,7 @@
     @apply text-2xl;
   }
   main h2 {
-  @apply text-lg mt-12;
+    @apply text-lg mt-12;
   }
   main p,
   main ul,
@@ -49,10 +49,10 @@
   }
   main li > code,
   main p > code {
-    @apply px-1.5 py-0.5 bg-code-bg;
+    @apply px-1.5 py-0.5 bg-rose-50/50 text-rose-600;
   }
   main pre {
-    @apply py-4 w-screen text-xs md:text-sm relative px-page-mobile md:px-page -ml-page-mobile md:-ml-page;
+    @apply py-4 w-screen text-sm md:text-base relative px-page-mobile md:px-page -ml-page-mobile md:-ml-page;
   }
 }
 
@@ -73,13 +73,14 @@
   }
 
   main .external-link::after {
+    background-color: #0000ff;
     @apply translate-x-1;
   }
 }
 
 .astro-code,
 .astro-code span {
-  @apply !bg-code-bg;
+  @apply !bg-stone-50;
 }
 
 ::selection {

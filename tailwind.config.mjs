@@ -10,12 +10,11 @@ export default {
         "page-mobile": "1rem", // 4
       },
       fontFamily: {
-        geist: ["Geist", "sans-serif"],
+        dejavu: ["DejavuSansMono", "monospace"],
       },
       colors: {
         "nav-text": colors.stone[700],
         "nav-text-hover": colors.stone[500],
-        "code-bg": colors.stone[50],
       },
     },
   },
