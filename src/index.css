@@ -10,11 +10,23 @@
 }
 
 @layer base {
+  body {
+    @apply px-page-mobile md:px-page my-8 font-geist leading-relaxed;
+  }
+  nav {
+    @apply flex justify-between my-8;
+  }
   nav a {
-    @apply text-stone-400 hover:text-stone-500;
+    @apply text-nav-text hover:text-nav-text-hover;
+  }
+  main {
+    @apply max-w-3xl;
   }
   main a {
     @apply underline underline-offset-4;
+  }
+  main h1 {
+    @apply text-2xl;
   }
   main h2 {
     @apply text-xl mt-12;
@@ -36,10 +48,10 @@
   }
   main li > code,
   main p > code {
-    @apply px-1.5 py-0.5 bg-stone-50 text-stone-700;
+    @apply px-1.5 py-0.5 bg-code-bg;
   }
   main pre {
-    @apply px-5 py-4 text-sm;
+    @apply py-4 w-screen text-xs md:text-sm relative px-page-mobile md:px-page -ml-page-mobile md:-ml-page;
   }
 }
 
@@ -56,17 +68,17 @@
   }
 
   nav .external-link::after {
-    @apply -translate-x-1 bg-stone-400 hover:bg-stone-500;
+    @apply -translate-x-1 bg-nav-text hover:bg-nav-text-hover;
   }
 
   main .external-link::after {
-    @apply translate-x-1 bg-black;
+    @apply translate-x-1;
   }
 }
 
 .astro-code,
 .astro-code span {
-  @apply !bg-stone-50;
+  @apply !bg-code-bg;
 }
 
 ::selection {

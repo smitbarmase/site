@@ -40,10 +40,10 @@ const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <ClientRouter />
   </head>
-  <body class="max-w-3xl mb-24 px-4 mx-auto font-geist">
+  <body>
     {
       (
-        <nav class="flex justify-between my-12">
+        <nav>
           <div>{isIndex ? null : <a href="/">back</a>}</div>
           <div class="flex space-x-4">
             <a
@@ -71,8 +71,8 @@ const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
         </nav>
       )
     }
-    <h1 class="text-2xl">{h1}</h1>
     <main>
+      <h1>{h1}</h1>
       <slot />
     </main>
   </body>
