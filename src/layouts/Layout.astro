@@ -45,7 +45,11 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="mb-8">
-      <a href="/" class="relative">
+      <a
+        href="/"
+        class="relative inline-block [-webkit-touch-callout:none]"
+        oncontextmenu="return false"
+      >
         <img
           class="inline active:scale-95 transform"
           src="/images/raster-512.png"
