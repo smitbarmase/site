@@ -17,7 +17,7 @@
 
 @layer base {
   body {
-    @apply max-w-3xl mx-auto mt-8 md:mt-16 mb-8 px-4 font-dejavu leading-relaxed text-sm md:text-base;
+    @apply max-w-3xl mx-auto mt-8 md:mt-16 mb-8 px-4 font-dejavu text-sm md:text-base !leading-normal sm:!leading-relaxed;
   }
   main a {
     @apply underline underline-offset-4 decoration-1;
