@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
+import Writing from "../components/Writing.astro";
+import { SITE_TITLE } from "../constants";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
@@ -14,9 +16,36 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const h2Headings = headings.filter((heading) => heading.depth === 2);
+
+const isIndex = post.data.title === SITE_TITLE;
 ---
 
-<Layout h1={post.data.title}>
-  <Content />
+<Layout title={isIndex ? SITE_TITLE : `${post.data.title} - ${SITE_TITLE}`}>
+  <h1>{post.data.title}</h1>
+  {
+    post.data.date && (
+      <div class="mt-6">
+        <time datetime={post.data.date.toISOString()}>
+          {new Date(post.data.date)
+            .toISOString()
+            .slice(0, 10)
+            .replace(/-/g, ".")}
+        </time>
+      </div>
+    )
+  }
+  {
+    !isIndex && h2Headings.length > 0 && (
+      <ol>
+        {h2Headings.map((heading) => (
+          <li>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    )
+  }
+  <Content components={{ Writing }} />
 </Layout>

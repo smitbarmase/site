@@ -3,10 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import { SITE_GITHUB_URL } from "../constants";
 ---
 
-<Layout h1="not found">
-  <p>you stumbled upon a page that doesn't exist.</p>
+<Layout title="Not Found">
+  <h1>Not found</h1>
+  <p>Well, this is awkward... The page you're looking for isn't here.</p>
   <p>
-    if you think this is an error, please
-    <a href={SITE_GITHUB_URL}>file an issue</a>.
+    If you think something's broken, please
+    <a href={SITE_GITHUB_URL}>let us know</a>.
   </p>
 </Layout>

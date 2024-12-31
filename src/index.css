@@ -5,54 +5,50 @@
 @font-face {
   font-family: "DejavuSansMono";
   src: url("/fonts/DejavuSansMono.woff2") format("woff2");
-  font-weight: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DejavuSansMono";
+  src: url("/fonts/DejavuSansMono-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-display: swap;
 }
 
 @layer base {
   body {
-    @apply px-page-mobile md:px-page my-8 font-dejavu leading-relaxed;
-  }
-  nav {
-    @apply flex justify-between my-8;
-  }
-  nav a {
-    @apply text-nav-text hover:text-nav-text-hover;
-  }
-  main {
-    @apply max-w-3xl;
+    @apply max-w-3xl mx-auto mt-8 md:mt-16 mb-8 px-4 font-dejavu leading-relaxed;
   }
   main a {
-    color: #0000ff;
-    @apply underline underline-offset-4;
+    @apply underline underline-offset-4 decoration-1;
   }
   main h1 {
-    @apply text-2xl;
+    @apply text-3xl;
   }
   main h2 {
-    @apply text-lg mt-12;
+    @apply text-2xl mt-8;
+  }
+  main ul,
+  main ol {
+    @apply mt-6;
   }
   main p,
-  main ul,
-  main ol,
   main pre {
-    @apply my-8;
+    @apply mt-4;
   }
   main ol {
-    @apply list-decimal pl-6;
+    list-style-type: decimal-leading-zero;
+    @apply pl-10;
   }
   main ul {
     @apply list-disc pl-6;
   }
   main li {
-    @apply mb-2;
+    @apply mb-1;
   }
   main li > code,
   main p > code {
-    @apply px-1.5 py-0.5 bg-rose-50/50 text-rose-600;
-  }
-  main pre {
-    @apply py-4 w-screen text-sm md:text-base relative px-page-mobile md:px-page -ml-page-mobile md:-ml-page;
+    @apply font-bold;
   }
 }
 
@@ -62,27 +58,13 @@
   }
 
   .external-link::after {
-    @apply inline-block w-4 h-4 translate-y-0.5;
+    @apply inline-block w-4 h-4 translate-y-0.5 translate-x-1 bg-black;
     mask-image: url("/icons/external-link.svg");
     mask-size: cover;
     content: "";
   }
-
-  nav .external-link::after {
-    @apply -translate-x-1 bg-nav-text hover:bg-nav-text-hover;
-  }
-
-  main .external-link::after {
-    background-color: #0000ff;
-    @apply translate-x-1;
-  }
-}
-
-.astro-code,
-.astro-code span {
-  @apply !bg-stone-50;
 }
 
 ::selection {
-  @apply bg-stone-200;
+  @apply bg-stone-100;
 }

@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+
+const filteredPosts = posts
+  .filter(
+    (post): post is typeof post & { data: { date: string } } =>
+      post.data.type === "writing" && Boolean(post.data.date),
+  )
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+---
+
+<ul class="list-none pl-0">
+  {
+    filteredPosts.map((post) => (
+      <li>
+        {new Date(post.data.date).toISOString().slice(0, 10).replace(/-/g, ".")}{" "}
+        - <a href={post.id}>{post.data.title}</a>
+      </li>
+    ))
+  }
+</ul>

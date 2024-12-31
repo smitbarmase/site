@@ -6,14 +6,10 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 import { SITE_AUTHOR, SITE_TITLE } from "../constants";
 
 interface Props {
-  h1: string;
+  title: string;
 }
 
-const { h1 } = Astro.props;
-
-const isIndex = h1 === SITE_TITLE;
-
-const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -32,7 +28,14 @@ const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
     />
     <link
       rel="preload"
-      href="/fonts/GeistMono-Regular.woff2"
+      href="/fonts/DejavuSansMono.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/DejavuSansMono-Bold.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -41,38 +44,18 @@ const title = isIndex ? SITE_TITLE : `${h1} - ${SITE_TITLE}`;
     <ClientRouter />
   </head>
   <body>
-    {
-      (
-        <nav>
-          <div>{isIndex ? null : <a href="/">back</a>}</div>
-          <div class="flex space-x-4">
-            <a
-              href="https://github.com/0xtimsb"
-              class="external-link"
-              target="_blank"
-            >
-              github
-            </a>
-            <a
-              href="https://x.com/0xtimsb"
-              class="external-link"
-              target="_blank"
-            >
-              x
-            </a>
-            <a
-              href="https://bsky.app/profile/0xtimsb.com"
-              class="external-link"
-              target="_blank"
-            >
-              bluesky
-            </a>
-          </div>
-        </nav>
-      )
-    }
+    <div class="mb-8">
+      <a href="/" class="relative">
+        <img
+          class="inline active:scale-95 transform"
+          src="/images/raster-512.png"
+          alt="tims"
+          width="80"
+          height="80"
+        />
+      </a>
+    </div>
     <main>
-      <h1>{h1}</h1>
       <slot />
     </main>
   </body>
