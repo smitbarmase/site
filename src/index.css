@@ -17,16 +17,16 @@
 
 @layer base {
   body {
-    @apply max-w-3xl mx-auto mt-8 md:mt-16 mb-8 px-4 font-dejavu leading-relaxed;
+    @apply max-w-3xl mx-auto mt-8 md:mt-16 mb-8 px-4 font-dejavu leading-relaxed text-sm md:text-base;
   }
   main a {
     @apply underline underline-offset-4 decoration-1;
   }
   main h1 {
-    @apply text-3xl;
+    @apply text-2xl md:text-3xl;
   }
   main h2 {
-    @apply text-2xl mt-8;
+    @apply text-xl md:text-2xl mt-8;
   }
   main ul,
   main ol {
