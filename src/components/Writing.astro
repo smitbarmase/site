@@ -16,9 +16,15 @@ const filteredPosts = posts
 <ul class="list-none pl-0">
   {
     filteredPosts.map((post) => (
-      <li>
-        {new Date(post.data.date).toISOString().slice(0, 10).replace(/-/g, ".")}{" "}
-        - <a href={post.id}>{post.data.title}</a>
+      <li class="flex space-x-2">
+        <time>
+          {new Date(post.data.date)
+            .toISOString()
+            .slice(0, 10)
+            .replace(/-/g, ".")}
+        </time>
+        <span>-</span>
+        <a href={post.id}>{post.data.title}</a>
       </li>
     ))
   }
