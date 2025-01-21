@@ -1,3 +1,15 @@
 [submodule "src/data"]
 	path = src/data
 	url = git@github.com:0xtimsb/site-data.git
+[submodule "public/experiments/rubiks"]
+	path = public/experiments/rubiks
+	url = git@github.com:0xtimsb/rubiks-cube-solver.git
+[submodule "public/experiments/snake"]
+	path = public/experiments/snake
+	url = git@github.com:0xtimsb/pathfinding-snake-game-visualizer.git
+[submodule "public/experiments/sort"]
+	path = public/experiments/sort
+	url = git@github.com:0xtimsb/sorting-algorithm-visualizer.git
+[submodule "public/experiments/2048"]
+	path = public/experiments/2048
+	url = git@github.com:0xtimsb/2048-ai.git
