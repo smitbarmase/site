@@ -1,11 +1,8 @@
-import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeSlug from "rehype-slug";
-
-import tailwindcss from "@tailwindcss/vite";
-
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import rehypeExternalLinks from "rehype-external-links";
 
 import { SITE_URL } from "./src/constants";
 
@@ -20,7 +17,6 @@ export default defineConfig({
       theme: "github-light",
     },
     rehypePlugins: [
-      rehypeSlug,
       [
         rehypeExternalLinks,
         {

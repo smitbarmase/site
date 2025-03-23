@@ -1,5 +1,5 @@
 // site
-export const SITE_TITLE = "smit";
+export const SITE_TITLE = "Smit Barmase";
 export const SITE_DESCRIPTION = "smit's dump";
 export const SITE_URL = "https://smitbarmase.com";
 export const SITE_GITHUB_URL = "https://github.com/smitbarmase/site";

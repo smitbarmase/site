@@ -2,7 +2,6 @@
 import { getCollection, render } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
-import Writing from "../components/Writing.astro";
 import { SITE_TITLE } from "../constants";
 
 export async function getStaticPaths() {
@@ -15,37 +14,49 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const { Content } = await render(post);
 
-const { Content, headings } = await render(post);
-const h2Headings = headings.filter((heading) => heading.depth === 2);
+const allPosts = await getCollection("posts");
 
-const isIndex = post.data.title === SITE_TITLE;
+const formattedDate = post.data.date
+  ? `${post.data.date.toLocaleDateString("en-US", {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })} at ${post.data.date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })}`
+  : "";
+
+const isIndex = post.id === "index";
 ---
 
-<Layout title={isIndex ? SITE_TITLE : `${post.data.title} - ${SITE_TITLE}`}>
+<Layout title={`${post.data.title} - ${SITE_TITLE}`}>
   <h1>{post.data.title}</h1>
+  <Content />
+  {
+    isIndex && (
+      <ul>
+        {allPosts
+          .filter((post) => post.id !== "index")
+          .map((post) => (
+            <li>
+              <a href={post.id}>{post.data.title}</a>
+            </li>
+          ))}
+      </ul>
+    )
+  }
   {
     post.data.date && (
-      <div class="mt-6">
+      <p>
         <time datetime={post.data.date.toISOString()}>
-          {new Date(post.data.date)
-            .toISOString()
-            .slice(0, 10)
-            .replace(/-/g, ".")}
+          Posted on {formattedDate}
         </time>
-      </div>
+      </p>
     )
   }
-  {
-    !isIndex && h2Headings.length > 0 && (
-      <ol>
-        {h2Headings.map((heading) => (
-          <li>
-            <a href={`#${heading.slug}`}>{heading.text}</a>
-          </li>
-        ))}
-      </ol>
-    )
-  }
-  <Content components={{ Writing }} />
 </Layout>

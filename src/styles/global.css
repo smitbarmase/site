@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: #ffffdd;
+}
+
+@layer base {
+  body {
+    @apply bg-background max-w-md m-4 sm:m-8;
+  }
+  h1 {
+    @apply font-medium mb-4;
+  }
+  a {
+    @apply underline underline-offset-2;
+  }
+  p {
+    @apply mb-4;
+  }
+  ul {
+    @apply list-disc ml-4 space-y-1;
+  }
+  time {
+    @apply opacity-40;
+  }
+}
