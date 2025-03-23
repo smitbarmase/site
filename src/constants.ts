@@ -1,8 +1,8 @@
 // site
 export const SITE_TITLE = "smit";
 export const SITE_DESCRIPTION = "smit's dump";
-export const SITE_URL = "https://0xtimsb.com";
-export const SITE_GITHUB_URL = "https://github.com/0xtimsb/site";
+export const SITE_URL = "https://smitbarmase.com";
+export const SITE_GITHUB_URL = "https://github.com/smitbarmase/site";
 export const SITE_AUTHOR = "Smit Barmase";
 
 // data

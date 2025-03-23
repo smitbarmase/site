@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://0xtimsb.com/sitemap-index.xml
+Sitemap: https://smitbarmase.com/sitemap-index.xml
