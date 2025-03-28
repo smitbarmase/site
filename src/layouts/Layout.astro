@@ -1,4 +1,7 @@
 ---
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
 import "../styles/global.css";
 
 import { SITE_AUTHOR } from "../constants";
@@ -25,6 +28,8 @@ const { title } = Astro.props;
       type="image/svg+xml"
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <Analytics />
+    <SpeedInsights />
   </head>
   <body>
     <slot />
