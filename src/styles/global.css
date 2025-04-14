@@ -1,24 +1,29 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #ffffdd;
-}
-
 @layer base {
   body {
-    @apply bg-background max-w-md m-4 sm:m-8;
+    @apply bg-[#01242e] text-[#ddd] px-6 sm:px-0;
+  }
+  main {
+    @apply max-w-prose mx-auto pt-6 sm:pt-12;
   }
   h1 {
-    @apply font-medium mb-4;
+    @apply text-white text-lg font-medium mb-6;
+  }
+  h2 {
+    @apply text-white mb-4 mt-6;
   }
   a {
-    @apply underline underline-offset-2;
+    @apply text-[#8cc2dd] underline underline-offset-2;
   }
   p {
     @apply mb-4;
   }
   ul {
-    @apply list-disc ml-4 space-y-1;
+    @apply list-disc ml-4;
+  }
+  li {
+    @apply mb-1;
   }
   time {
     @apply opacity-40;
